@@ -6,12 +6,14 @@ public class Mentor {
     private String mtrName;
     private String username;
     private String password;
+    private String dob;
 
-    public Mentor(int mtrId, String mtrName, String username, String password) {
+    public Mentor(int mtrId, String mtrName, String username, String password, String dob) {
         this.mtrId=mtrId;
         this.mtrName=mtrName;
         this.username=username;
         this.password=password;
+        this.dob=dob;
     }
 
     public int getMtrId() {
@@ -46,4 +48,11 @@ public class Mentor {
         this.password=password;
     }
     
+    public String getDob(){
+        return dob;
+    }
+
+    public void setDob(String dob){
+        this.dob=dob;
+    }
 }

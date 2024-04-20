@@ -9,8 +9,9 @@ public class Student {
     private String Minor;
     private double GPA;
     private int mtrId;
+    private String dob;
 
-    public Student(int sId, String sName, String Major, String Minor, double GPA, int mtrId) {
+    public Student(int sId, String sName, String Major, String Minor, double GPA, int mtrId, String dob) {
         this.sId = sId;
         this.sName = sName;
         this.Major = Major;
@@ -73,6 +74,14 @@ public class Student {
 
     public void setMtrId(int mtrId) {
         this.mtrId = mtrId;
+    }
+
+    public void setsDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getsDob() {
+        return dob;
     }
 }
 

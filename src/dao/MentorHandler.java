@@ -22,14 +22,15 @@ public class MentorHandler {
             if (rsMentor != null && rsMentor.next()) {
                 int mtrId = rsMentor.getInt("mtrId");
                 String mtrName = rsMentor.getString("mtrName");
-                mentor = new Mentor(mtrId, mtrName, username, password);
+                String dob=rsMentor.getString("dob");
+                mentor = new Mentor(mtrId, mtrName, username, password, dob);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return mentor;
     }
-    public boolean addMentor(String username, String password, String name) {
+    public boolean addMentor(String username, String password, String name, String dob) {
         String encryptedPassword = PasswordEncrypter.encryptPassword(password);
         String stm = String.format("INSERT INTO Mentor (mtrUsername, mtrPassword, mtrName) VALUES ('%s', '%s', '%s')", username, encryptedPassword, name);
         return sqlUtil.executeUpdate(stm) > 0;
@@ -38,7 +39,7 @@ public class MentorHandler {
         String stm = String.format("DELETE FROM Mentor WHERE mtrId=%d", mtrId);
         return sqlUtil.executeUpdate(stm) > 0;
     }
-    public boolean updateMentor(int mtrId, String username, String password, String name) {
+    public boolean updateMentor(int mtrId, String username, String password, String name, String dob) {
         String encryptedPassword = PasswordEncrypter.encryptPassword(password);
         String stm = String.format("UPDATE Mentor SET mtrUsername='%s', mtrPassword='%s', mtrName='%s' WHERE mtrId=%d", username, encryptedPassword, name, mtrId);
         return sqlUtil.executeUpdate(stm) > 0;
