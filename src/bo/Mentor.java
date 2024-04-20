@@ -1,28 +1,28 @@
 package bo;
 
 public class Mentor {
-    private int stfId;
-    private String stfName;
+    private int mtrId;
+    private String mtrName;
 
-    public Staff(int stfId, String stfName) {
-        this.stfId = stfId;
-        this.stfName = stfName;
+    public Mentor(int mtrId, String mtrName) {
+        this.mtrId = mtrId;
+        this.mtrName = mtrName;
     }
 
-    public int getStfId() {
-        return stfId;
+    public int getMtrId() {
+        return mtrId;
     }
 
-    public void setStfId(int stfId) {
-        this.stfId = stfId;
+    public void setMtrId(int mtrId) {
+        this.mtrId = mtrId;
     }
 
-    public String getStfName() {
-        return stfName;
+    public String getMtrName() {
+        return mtrName;
     }
 
-    public void setStfName(String stfName) {
-        this.stfName = stfName;
+    public void setMtrName(String mtrName) {
+        this.mtrName = mtrName;
     }
     
 }
