@@ -16,7 +16,7 @@ public class SQLtil {
     private connection getConncetion(){
         try{
             if (con == null || con.isClosed())
-            String url = " something ";
+            String url = " directory for my sql server ";
             String username = 'root';
             String password = 'root';
             try { 
