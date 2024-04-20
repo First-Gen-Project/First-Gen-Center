@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.PreparedStatement;
 import util.SQLUtil;
 
 public class StudentHandler {
@@ -17,11 +18,21 @@ public class StudentHandler {
         sqlUtil=new SQLUtil();
     }
 
-    public int addStudent(String sName, String Major, String Minor, double GPA, int mtrId){
-        String cmdTemplate="insert into Student (sName, Major, Minor, GPA ex.0.00, mtrId) values (%s, %s, %s,%d, %d)";
-        String stmStr=String.format(cmdTemplate, sName, Major, Minor, GPA, mtrId);
-        return sqlUtil.executeUpdate(stmStr);
+    public int addStudent(String sName, String Major, String Minor, double GPA, int mtrId) {
+        String cmdTemplate = "insert into Student (sName, Major, Minor, GPA, mtrId) values (?, ?, ?, ?, ?)";
+        try (PreparedStatement preparedStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate)) {
+            preparedStatement.setString(1, sName);
+            preparedStatement.setString(2, Major);
+            preparedStatement.setString(3, Minor);
+            preparedStatement.setDouble(4, GPA);
+            preparedStatement.setInt(5, mtrId);
+            return preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
+    
 
     public int deleteStudent(int sId){
         String stm=String.format("delete from student sId=%d", sId);
