@@ -1,28 +1,31 @@
 package bo;
 
+import java.util.Vector;
+
 public class Student {
     private int sId;
     private String sName;
-    private String sAddress;
-    private int chId;
-    private int stfId;
+    private String Major;
+    private String Minor;
+    private double GPA;
+    private int mtrId;
 
-    public Student(int sId, String sName, String sAddress, int chId, int stfId) {
+    public Student(int sId, String sName, String Major, String Minor, double GPA, int mtrId) {
         this.sId = sId;
         this.sName = sName;
-        this.sAddress = sAddress;
-        this.chId = chId;
-        this.stfId = stfId;
-    }
-    public Student(int sId2, String sName2, String major, String minor, double gPA, int mtrId) {
-        //TODO Auto-generated constructor stub
+        this.Major = Major;
+        this.Minor = Minor;
+        this.GPA = GPA;
+        this.mtrId = mtrId;
     }
     public Vector<Object> getRow(){
-        Vector<Object> ret = new Vector();
+        Vector<Object> ret = new Vector<>();
         ret.add(this.sId);
         ret.add(this.sName);
-        ret.add(this.sAddress);
-        ret.add(this.chId);
+        ret.add(this.Major);
+        ret.add(this.Minor);
+        ret.add(this.GPA);
+        ret.add(this.mtrId);
         return ret;
     }
     public int getsId() {
@@ -41,28 +44,35 @@ public class Student {
         this.sName = sName;
     }
 
-    public String getsAddress() {
-        return sAddress;
+    public String getsMajor() {
+        return Major;
     }
 
-    public void setsAddress(String sAddress) {
-        this.sAddress = sAddress;
+    public void setsMajor(String Major) {
+        this.Major = Major;
     }
 
-    public int getChId() {
-        return chId;
+    public void setsMinor(String Minor) {
+        this.Minor = Minor;
+    }
+    public String getsMinor() {
+        return Minor;
     }
 
-    public void setChId(int chId) {
-        this.chId = chId;
+    public double getGPA() {
+        return GPA;
     }
 
-    public int getStfId() {
-        return stfId;
+    public void setGPA(int GPA) {
+        this.GPA = GPA;
     }
 
-    public void setStfId(int stfId) {
-        this.stfId = stfId;
+    public int getMtrId() {
+        return mtrId;
+    }
+
+    public void setMtrId(int mtrId) {
+        this.mtrId = mtrId;
     }
 }
 
