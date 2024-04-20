@@ -1,6 +1,6 @@
 package bo;
 
-public class Staff {
+public class Mentor {
     private int stfId;
     private String stfName;
 
