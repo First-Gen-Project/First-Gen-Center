@@ -1,8 +1,6 @@
 package dao;
 
 import bo.Mentor;
-import utils.PasswordEncrypter;
-import utils.SQLUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

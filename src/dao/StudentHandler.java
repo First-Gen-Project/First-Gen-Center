@@ -1,14 +1,14 @@
 package dao;
 
-import bo.Mentor;
+import bo.Student;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import util.logging.Level;
+import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.sql.PreparedStatement;
-import util.SQLUtil;
 
 public class StudentHandler {
     

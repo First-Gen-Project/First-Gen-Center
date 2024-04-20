@@ -14,6 +14,9 @@ public class Student {
         this.chId = chId;
         this.stfId = stfId;
     }
+    public Student(int sId2, String sName2, String major, String minor, double gPA, int mtrId) {
+        //TODO Auto-generated constructor stub
+    }
     public Vector<Object> getRow(){
         Vector<Object> ret = new Vector();
         ret.add(this.sId);

@@ -1,7 +1,7 @@
-package utils;
+package dao;
 
 import java.sql.Connection;
-import java.sql DriverManager;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,7 +13,7 @@ public class SQLUtil {
     private Connection con;
     private Statement stm;
 
-    private Connection getConnection(){
+    protected Connection getConnection(){
         try{
             if (con == null || con.isClosed()){
                 String url = "directory for my sql server";
@@ -64,14 +64,15 @@ private Statement getStatement(){
     }
     public void closeConnection() {
         try {
-            con.close();
+            if(stm!=null){
+                stm.close();
+            }
+            if(con!=null){
+                con.close();
+            }
         } catch (Exception ex) {
             Logger.getLogger(SQLUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    void finalize() throws Throwable {
-        closeConnection();
-        super.finalize();
-    }
 }
