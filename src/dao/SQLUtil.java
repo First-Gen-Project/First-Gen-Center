@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class SQLUtil {
     private Connection con;
     private Statement stm;
@@ -74,5 +73,5 @@ private Statement getStatement(){
             Logger.getLogger(SQLUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
 }

@@ -18,4 +18,4 @@ public class PasswordEncrypter{
         }
         return result;
     }
-}//ok
+}
