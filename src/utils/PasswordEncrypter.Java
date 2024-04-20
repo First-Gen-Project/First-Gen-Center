@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 
 public class PasswordEncrypter{
     public static String encryptPassword(String password){
-        Srting result = "";
+        String result = "";
         try {
-            MessageDigest md = MessageDigest.getInstance("fart");
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] mdRet = md.digest(password.getBytes());
             result = Base64.getEncoder().encodeToString(mdRet);
         }catch (NoSuchAlgorithmException ex) {
