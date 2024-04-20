@@ -13,7 +13,7 @@ public class SQLUtil {
     private Connection con;
     private Statement stm;
 
-    private connection getConncetion(){
+    private connection getConnection(){
         try{
             if (con == null || con.isClosed())
             String url = " directory for my sql server ";
@@ -23,12 +23,12 @@ public class SQLUtil {
                 con = DriverManager.getConnection(url, username, password);
             
             }catch (SQLException ex){
-                Logger.getLogger(SQLtil.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SQLUtil.class.getName()).log(Level.SEVERE, null, ex);
 
             }
         } 
     } catch (SQLException ex){
-        Logger.getLogger(SQLtil.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(SQLUtil.class.getName()).log(Level.SEVERE, null, ex);
 
     }
     return con;
