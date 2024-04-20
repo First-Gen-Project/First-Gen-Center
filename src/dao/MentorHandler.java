@@ -1,7 +1,7 @@
 package dao;
 
 import bo.Mentor;
-import utils.PasswordEncryptor;
+import utils.PasswordEncrypter;
 import utils.SQLUtil;
 
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ public class MentorHandler {
 
     public Mentor login(String username, String password) {
         Mentor mentor = null;
-        String encryptedPassword = PasswordEncryptor.encryptPassword(password);
+        String encryptedPassword = PasswordEncrypter.encryptPassword(password);
         String stm = String.format("SELECT * FROM Mentor WHERE mtrUsername='%s' AND mtrPassword='%s'", username, encryptedPassword);
         ResultSet rsMentor = sqlUtil.executeQuery(stm);
 
@@ -33,7 +33,7 @@ public class MentorHandler {
     }
 
     public boolean addMentor(String username, String password, String name) {
-        String encryptedPassword = PasswordEncryptor.encryptPassword(password);
+        String encryptedPassword = PasswordEncrypter.encryptPassword(password);
         String stm = String.format("INSERT INTO Mentor (mtrUsername, mtrPassword, mtrName) VALUES ('%s', '%s', '%s')", username, encryptedPassword, name);
         return sqlUtil.executeUpdate(stm) > 0;
     }
@@ -44,7 +44,7 @@ public class MentorHandler {
     }
 
     public boolean updateMentor(int mtrId, String username, String password, String name) {
-        String encryptedPassword = PasswordEncryptor.encryptPassword(password);
+        String encryptedPassword = PasswordEncrypter.encryptPassword(password);
         String stm = String.format("UPDATE Mentor SET mtrUsername='%s', mtrPassword='%s', mtrName='%s' WHERE mtrId=%d", username, encryptedPassword, name, mtrId);
         return sqlUtil.executeUpdate(stm) > 0;
     }

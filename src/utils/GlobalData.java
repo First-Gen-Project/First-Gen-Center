@@ -3,5 +3,5 @@ package utils;
 import bo.Mentor;
 
 public class GlobalData {
-    public static Mentor stf = null;
+    public static Mentor mtr = null;
 }
