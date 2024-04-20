@@ -24,7 +24,7 @@ public class MentorHandler {
                 String mtrName=rsMentor.getString("mtrName");
                 mtr = new Mentor(mtrId, mtrName);
             }
-        }catch(Exception ex){
+        }catch(Exception ex){ 
             ex.printStackTrace();
         }
         return mtr;
