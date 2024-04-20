@@ -19,7 +19,7 @@ public class StudentHandler {
     }
 
     public int addStudent(String sName, String Major, String Minor, double GPA, int mtrId, String dob) {
-        String cmdTemplate = "insert into Student (sName, Major, Minor, GPA, mtrId, dob) values (String, String, String, Double, Integer, String-MM/DD/YYYY");
+        String cmdTemplate = "insert into Student (sName, Major, Minor, GPA, mtrId, dob) values (String, String, String, Double, Integer, String-MM/DD/YYYY)";
         try (PreparedStatement preparedStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate)) {
             preparedStatement.setString(1, sName);
             preparedStatement.setString(2, Major);
