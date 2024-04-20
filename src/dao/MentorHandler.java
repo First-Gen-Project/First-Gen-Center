@@ -1,32 +1,51 @@
 package dao;
+
 import bo.Mentor;
-import java.sql.ResultSet;
 import utils.PasswordEncryptor;
 import utils.SQLUtil;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class MentorHandler {
     private SQLUtil sqlUtil;
 
-    public MentorHandler(){
+    public MentorHandler() {
         this.sqlUtil = new SQLUtil();
     }
 
-    public Mentor login(String username, String password){
-        Mentor mtr = null;
-        //encryption
-        password = PasswordEncryptor.encryptPassword(password);
-        String stm = String.format("select Mentor ID, Mentor Name from Mentor where mtrUsername='%s' and mtrPassword='%s'", username, password);
-        ResultSet rsMentor=sqlUtil.executeQuery(stm);
+    public Mentor login(String username, String password) {
+        Mentor mentor = null;
+        String encryptedPassword = PasswordEncryptor.encryptPassword(password);
+        String stm = String.format("SELECT * FROM Mentor WHERE mtrUsername='%s' AND mtrPassword='%s'", username, encryptedPassword);
+        ResultSet rsMentor = sqlUtil.executeQuery(stm);
 
-        try{
-            if(rsMentor!=null && rsMentor.next()){
-                int mtrId=rsMentor.getInt("mtrId");
-                String mtrName=rsMentor.getString("mtrName");
-                mtr = new Mentor(mtrId, mtrName);
+        try {
+            if (rsMentor != null && rsMentor.next()) {
+                int mtrId = rsMentor.getInt("mtrId");
+                String mtrName = rsMentor.getString("mtrName");
+                mentor = new Mentor(mtrId, mtrName);
             }
-        }catch(Exception ex){ 
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return mtr;
+        return mentor;
+    }
+
+    public boolean addMentor(String username, String password, String name) {
+        String encryptedPassword = PasswordEncryptor.encryptPassword(password);
+        String stm = String.format("INSERT INTO Mentor (mtrUsername, mtrPassword, mtrName) VALUES ('%s', '%s', '%s')", username, encryptedPassword, name);
+        return sqlUtil.executeUpdate(stm) > 0;
+    }
+
+    public boolean deleteMentor(int mtrId) {
+        String stm = String.format("DELETE FROM Mentor WHERE mtrId=%d", mtrId);
+        return sqlUtil.executeUpdate(stm) > 0;
+    }
+
+    public boolean updateMentor(int mtrId, String username, String password, String name) {
+        String encryptedPassword = PasswordEncryptor.encryptPassword(password);
+        String stm = String.format("UPDATE Mentor SET mtrUsername='%s', mtrPassword='%s', mtrName='%s' WHERE mtrId=%d", username, encryptedPassword, name, mtrId);
+        return sqlUtil.executeUpdate(stm) > 0;
     }
 }
