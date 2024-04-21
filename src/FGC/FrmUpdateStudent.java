@@ -1,4 +1,4 @@
-package FGC;
+package fgc;
 
 public class FrmUpdateStudent {
 
