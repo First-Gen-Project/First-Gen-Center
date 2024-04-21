@@ -6,6 +6,10 @@ package fgc;
 
 import javax.swing.JOptionPane;
 
+import utils.GlobalData;
+
+import bo.Mentor;
+
 /**
  *
  * @author hjone
