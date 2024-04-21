@@ -2,9 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package fgc;
+package FGC;
 
 import javax.swing.JOptionPane;
+
+import bo.Mentor;
+import dao.MentorHandler;
+import utils.GlobalData;
 
 /**
  *
