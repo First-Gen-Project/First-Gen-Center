@@ -41,6 +41,8 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         txtDob = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
 
         setTitle("Add Student");
 
@@ -65,6 +67,8 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel8.setText("Email");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,7 +76,12 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtEmail))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel7)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -100,8 +109,7 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtMinor)
-                                .addComponent(txtGPA))))
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtGPA)))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,8 +144,12 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtDob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAdd)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -152,6 +164,7 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
         String GPA = txtGPA.getText();
         String mtrId = txtMid.getText();
         String dob = txtDob.getText();
+        String Email =txtEmail.getText();
     }//GEN-LAST:event_btnAddActionPerformed
 
 
@@ -164,7 +177,9 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txtDob;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtGPA;
     private javax.swing.JTextField txtMajor;
     private javax.swing.JTextField txtMid;
