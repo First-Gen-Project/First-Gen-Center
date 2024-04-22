@@ -83,7 +83,7 @@ public class FrmLogin extends javax.swing.JInternalFrame {
                             .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
@@ -119,9 +119,9 @@ public class FrmLogin extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Incorrect username and password");
     }//GEN-LAST:event_btnLoginActionPerformed
-
+    }
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here;
+        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 

@@ -16,7 +16,7 @@ import java.util.Map;
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 import utils.GlobalData;
-
+import utils.SQLUtil;
 
 /**
  *
@@ -40,9 +40,13 @@ public class FrmMain extends javax.swing.JFrame {
         String columns[] = new String[]{
             "SamID", "Name", "Email", "Dob", "Major", "Minor", "gpa", "mtrId" 
         };
-        DefaultTableModel tblModel = new DefaultTableModel(columns){
-            
-        }
+        DefaultTableModel tblModel = new DefaultTableModel(columns,0);
+        students.forEach((std)->{
+            tblModel.addRow(std.getRow());
+        });
+        tblStudents.setModel(tblModel);
+
+        
     }
     
     public FrmMain() {
@@ -54,6 +58,7 @@ public class FrmMain extends javax.swing.JFrame {
         forms.values().forEach((frm)->{
             jdpContainer.add(frm);
         });
+        populateStudents();
     }
     private void showForm(String frmName){
         showForm(frmName,false);
@@ -95,11 +100,14 @@ public class FrmMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jdpContainer = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        tblStudents = new javax.swing.JTable();
         txtKeyword = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        txtStudents = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         fileLogin = new javax.swing.JMenuItem();
@@ -128,7 +136,10 @@ public class FrmMain extends javax.swing.JFrame {
         jdpContainer.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jdpContainer.setToolTipText("");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setBackground(new java.awt.Color(242, 169, 5));
+
+        tblStudents.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tblStudents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -139,10 +150,7 @@ public class FrmMain extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Search");
+        jScrollPane1.setViewportView(tblStudents);
 
         txtKeyword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,38 +160,83 @@ public class FrmMain extends javax.swing.JFrame {
 
         jButton1.setText("Search");
 
-        jdpContainer.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdpContainer.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdpContainer.setLayer(txtKeyword, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdpContainer.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jDesktopPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255), 10));
+
+        txtStudents.setBackground(new java.awt.Color(255, 255, 255));
+        txtStudents.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtStudents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtStudents.setText("Students");
+
+        jDesktopPane1.setLayer(txtStudents, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtStudents)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jdpContainer.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpContainerLayout = new javax.swing.GroupLayout(jdpContainer);
         jdpContainer.setLayout(jdpContainerLayout);
         jdpContainerLayout.setHorizontalGroup(
             jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdpContainerLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jdpContainerLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(33, 33, 33)
-                        .addComponent(txtKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(765, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 682, Short.MAX_VALUE))
         );
         jdpContainerLayout.setVerticalGroup(
             jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdpContainerLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 284, Short.MAX_VALUE))
         );
 
         getContentPane().add(jdpContainer, java.awt.BorderLayout.CENTER);
@@ -350,6 +403,10 @@ public class FrmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtKeywordActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -392,11 +449,12 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem fileLogin;
     private javax.swing.JMenuItem fileLogout;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JDesktopPane jdpContainer;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuManage;
@@ -409,7 +467,9 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mngStudentAdd;
     private javax.swing.JMenuItem mngStudentDelete;
     private javax.swing.JMenuItem mngStudentUpdate;
+    private javax.swing.JTable tblStudents;
     private javax.swing.JTextField txtKeyword;
+    private javax.swing.JLabel txtStudents;
     private javax.swing.JCheckBoxMenuItem viewApplication;
     private javax.swing.JCheckBoxMenuItem viewEvents;
     private javax.swing.JCheckBoxMenuItem viewNotes;

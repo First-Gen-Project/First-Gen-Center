@@ -3,48 +3,69 @@ package bo;
 import java.util.Vector;
 
 public class Student {
-    private int sId;
-    private String sName;
+    private int samID;
+    private String name;
+    private String email;
     private String Major;
     private String Minor;
     private double GPA;
     private int mtrId;
     private String dob;
 
-    public Student(int sId, String sName, String Major, String Minor, double GPA, int mtrId, String dob) {
-        this.sId = sId;
-        this.sName = sName;
+    public Student(int samID, String name, String Major, String Minor, double GPA, int mtrId, String dob) {
+        this.samID = samID;
+        this.name = name;
         this.Major = Major;
         this.Minor = Minor;
         this.GPA = GPA;
         this.mtrId = mtrId;
     }
-    public Vector<Object> getRow(){
+    public Vector<Object> getRows(){
         Vector<Object> ret = new Vector<>();
-        ret.add(this.sId);
-        ret.add(this.sName);
+        ret.add(this.samID);
+        ret.add(this.name);
+        ret.add(this.email);
         ret.add(this.Major);
         ret.add(this.Minor);
         ret.add(this.GPA);
         ret.add(this.mtrId);
         return ret;
     }
-    public int getsId() {
-        return sId;
+    public Vector getRow(){
+        Vector vec = new Vector<>();
+        vec.add(this.samID);
+        vec.add(this.name);
+        vec.add(this.email);
+        vec.add(this.Major);
+        vec.add(this.Minor);
+        vec.add(this.GPA);
+        vec.add(this.mtrId);
+        return vec;
+    }
+    public int getsamID() {
+        return samID;
     }
 
-    public void setsId(int sId) {
-        this.sId = sId;
+    public void setsamID(int samID) {
+        this.samID = samID;
     }
 
-    public String getsName() {
-        return sName;
+    public String getname() {
+        return name;
+    }
+    
+    public void setname(String name) {
+        this.name = name;
     }
 
-    public void setsName(String sName) {
-        this.sName = sName;
+    public String getemail(){
+        return email;
     }
-
+    
+    public void setemail(String email){
+        this.email = email;
+    }
+    
     public String getsMajor() {
         return Major;
     }
