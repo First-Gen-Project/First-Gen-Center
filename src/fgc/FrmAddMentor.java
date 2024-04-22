@@ -8,12 +8,12 @@ package fgc;
  *
  * @author hjone
  */
-public class FrmAddStudent extends javax.swing.JInternalFrame {
+public class FrmAddMentor extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmAddStudent2
      */
-    public FrmAddStudent() {
+    public FrmAddMentor() {
         initComponents();
     }
 
