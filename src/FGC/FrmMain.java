@@ -4,13 +4,17 @@
  */
 package fgc;
 
+import bo.Student;
+import dao.StudentHandler;
 import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.JInternalFrame;
+import javax.swing.table.DefaultTableModel;
 import utils.GlobalData;
 
 
@@ -28,7 +32,19 @@ public class FrmMain extends javax.swing.JFrame {
     FrmViewStudent frmViewStudents = new FrmViewStudent();
     Map<String, JInternalFrame>  forms = new HashMap<>();
     
-           
+    private StudentHandler studentHandler = new StudentHandler();
+ 
+    private void populateStudents(){
+        String keyword = txtKeyword.getText();
+        List<Student> students = studentHandler.loadStudents(keyword);
+        String columns[] = new String[]{
+            "SamID", "Name", "Email", "Dob", "Major", "Minor", "gpa", "mtrId" 
+        };
+        DefaultTableModel tblModel = new DefaultTableModel(columns){
+            
+        }
+    }
+    
     public FrmMain() {
         initComponents();
         forms.put("frmLogin", frmLogin);
@@ -38,6 +54,9 @@ public class FrmMain extends javax.swing.JFrame {
         forms.values().forEach((frm)->{
             jdpContainer.add(frm);
         });
+    }
+    private void showForm(String frmName){
+        showForm(frmName,false);
     }
     private void showForm(String frmName, boolean checkLogin){
         if(checkLogin && GlobalData.mtr == null){
@@ -76,6 +95,11 @@ public class FrmMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jdpContainer = new javax.swing.JDesktopPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtKeyword = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         fileLogin = new javax.swing.JMenuItem();
@@ -101,16 +125,65 @@ public class FrmMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jdpContainer.setBackground(new java.awt.Color(0, 0, 0));
+        jdpContainer.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jdpContainer.setToolTipText("");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Search");
+
+        txtKeyword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKeywordActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Search");
+
+        jdpContainer.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpContainer.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpContainer.setLayer(txtKeyword, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpContainer.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpContainerLayout = new javax.swing.GroupLayout(jdpContainer);
         jdpContainer.setLayout(jdpContainerLayout);
         jdpContainerLayout.setHorizontalGroup(
             jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1137, Short.MAX_VALUE)
+            .addGroup(jdpContainerLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jdpContainerLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(33, 33, 33)
+                        .addComponent(txtKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(765, Short.MAX_VALUE))
         );
         jdpContainerLayout.setVerticalGroup(
             jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
+            .addGroup(jdpContainerLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(414, Short.MAX_VALUE))
         );
 
         getContentPane().add(jdpContainer, java.awt.BorderLayout.CENTER);
@@ -242,10 +315,11 @@ public class FrmMain extends javax.swing.JFrame {
 
     private void fileExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileExitActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_fileExitActionPerformed
 
     private void mngStudentAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngStudentAddActionPerformed
-        // TODO add your handling code here:
+        showForm("frmAddStudent");
     }//GEN-LAST:event_mngStudentAddActionPerformed
 
     private void mngStudentUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngStudentUpdateActionPerformed
@@ -271,6 +345,10 @@ public class FrmMain extends javax.swing.JFrame {
     private void fileLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileLoginActionPerformed
         showForm("frmLogin", false);
     }//GEN-LAST:event_fileLoginActionPerformed
+
+    private void txtKeywordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKeywordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKeywordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,8 +391,12 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem fileExit;
     private javax.swing.JMenuItem fileLogin;
     private javax.swing.JMenuItem fileLogout;
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JDesktopPane jdpContainer;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuManage;
@@ -327,6 +409,7 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mngStudentAdd;
     private javax.swing.JMenuItem mngStudentDelete;
     private javax.swing.JMenuItem mngStudentUpdate;
+    private javax.swing.JTextField txtKeyword;
     private javax.swing.JCheckBoxMenuItem viewApplication;
     private javax.swing.JCheckBoxMenuItem viewEvents;
     private javax.swing.JCheckBoxMenuItem viewNotes;
