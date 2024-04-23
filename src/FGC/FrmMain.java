@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package fgc;
+package FGC;
 
 import bo.Student;
 import dao.StudentHandler;
@@ -16,7 +16,7 @@ import java.util.Map;
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 import utils.GlobalData;
-import utils.SQLUtil;
+import dao.SQLUtil;
 
 /**
  *
