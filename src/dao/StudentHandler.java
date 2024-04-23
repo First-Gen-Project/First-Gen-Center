@@ -1,5 +1,6 @@
 package dao;
 
+import utils.SQLUtil;
 import bo.Student;
 
 import java.sql.PreparedStatement;
@@ -19,15 +20,18 @@ public class StudentHandler {
     }
 
     public int addStudent(int samID, String name, String email, String Major, String Minor, double gpa, int mtrId, String Dob) {
-        String cmdTemplate = "insert into Student (samID, name, Major, Minor, GPA, mtrId) values (%s, %s, %s, %d, %d)";
+        String cmdTemplate = "insert into Student (samID, name, email, Major, Minor, GPA, mtrId, Dob) values (%d, '%s', '%s', '%s', '%s', %f, %d, '%s')";
         String cmd = String.format(cmdTemplate, name, Major, Minor, gpa, mtrId, Dob);
-        try (PreparedStatement preparedStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate)) {
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, Major);
-            preparedStatement.setString(3, Minor);
-            preparedStatement.setDouble(4, gpa);
-            preparedStatement.setInt(5, mtrId);
-            preparedStatement.setString(6, Dob);
+    
+        try (PreparedStatement preparedStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate)){
+            preparedStatement.setInt(1, samID);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4, Major);
+            preparedStatement.setString(5, Minor);
+            preparedStatement.setDouble(6, gpa);
+            preparedStatement.setInt(7, mtrId);
+            preparedStatement.setString(8, Dob);
             return preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(StudentHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -42,7 +46,7 @@ public class StudentHandler {
             String cmd = String.format(cmdTemplate, "%" + keyword + "%");
             ResultSet rs = sqlUtil.executeQuery(cmd);
         try {    
-            while(rs.next()){
+            while(rs!=null && rs.next()){
                 int samID = rs.getInt("samID");
                 String name = rs.getString("name");
                 String email = rs.getString("email");

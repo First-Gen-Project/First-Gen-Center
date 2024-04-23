@@ -1,22 +1,21 @@
 package utils;
 
 import java.sql.Connection;
-import java.sql DriverManager;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class SQLUtil {
     private Connection con;
     private Statement stm;
 
-    private Connection getConnection(){
+    public Connection getConnection(){
         try{
             if (con == null || con.isClosed()){
-                String url = "directory for my sql server";
+                String url = "jdbc:mySQL://localhost:3306/FirstGen";
                 String username = "root";
                 String password = "root";
                 try { 
@@ -64,13 +63,18 @@ private Statement getStatement(){
     }
     public void closeConnection() {
         try {
-            con.close();
-        } catch (Exception ex) {
+            if(stm!=null){
+                stm.close();
+            }
+            if(con!=null){
+                con.close();
+            }
+        } catch (SQLException ex) {
             Logger.getLogger(SQLUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    void finalize() throws Throwable {
+    @Override
+    protected void finalize() throws Throwable {
         closeConnection();
         super.finalize();
     }

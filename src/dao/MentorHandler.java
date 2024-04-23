@@ -1,5 +1,6 @@
 package dao;
 
+import utils.SQLUtil;
 import bo.Mentor;
 
 import java.sql.ResultSet;

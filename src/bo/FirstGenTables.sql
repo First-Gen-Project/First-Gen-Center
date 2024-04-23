@@ -1,4 +1,4 @@
-
+DROP DATABASE IF EXISTS firstgen;
 CREATE DATABASE firstgen;
 USE firstgen;
 
@@ -6,7 +6,7 @@ USE firstgen;
 CREATE TABLE IF NOT EXISTS person (
     samID INT PRIMARY KEY,
     name VARCHAR(255),
-    email VARCHAR(255) UNIQUE,
+    email VARCHAR(255),
     date_of_birth DATE
 );
 
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS student (
     major VARCHAR(255),
     minor VARCHAR(255) DEFAULT NULL,
     gpa DECIMAL(3, 2),
-    mtrId INT,
+    mtrId INT, 
     FOREIGN KEY (samID) REFERENCES person(samID),
     FOREIGN KEY (mtrID) REFERENCES mentor(samID)
 );
@@ -73,4 +73,6 @@ CREATE TABLE IF NOT EXISTS application_info (
     value VARCHAR(255),
     FOREIGN KEY (app_id) REFERENCES application(samID)
 );
+
+INSERT INTO student(samID, name, major, minor, gpa, mtrId) VALUES ('33994', 'tom', 'science', 'food', '3.55', '89239');
 

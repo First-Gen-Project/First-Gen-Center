@@ -2,7 +2,7 @@ package bo;
 
 import java.util.Vector;
 
-public class Student {
+public class Student{
     private int samID;
     private String name;
     private String email;
@@ -20,7 +20,7 @@ public class Student {
         this.GPA = GPA;
         this.mtrId = mtrId;
     }
-    public Vector<Object> getRows(){
+    public Vector<Object> getRow(){
         Vector<Object> ret = new Vector<>();
         ret.add(this.samID);
         ret.add(this.name);
@@ -31,17 +31,8 @@ public class Student {
         ret.add(this.mtrId);
         return ret;
     }
-    public Vector getRow(){
-        Vector vec = new Vector<>();
-        vec.add(this.samID);
-        vec.add(this.name);
-        vec.add(this.email);
-        vec.add(this.Major);
-        vec.add(this.Minor);
-        vec.add(this.GPA);
-        vec.add(this.mtrId);
-        return vec;
-    }
+   
+    
     public int getsamID() {
         return samID;
     }
@@ -50,11 +41,11 @@ public class Student {
         this.samID = samID;
     }
 
-    public String getname() {
+    public String getName() {
         return name;
     }
     
-    public void setname(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
