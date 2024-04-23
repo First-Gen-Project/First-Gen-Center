@@ -42,42 +42,42 @@ public class Student {
         vec.add(this.mtrId);
         return vec;
     }
-    public int getsamID() {
+    public int getSamID() {
         return samID;
     }
 
-    public void setsamID(int samID) {
+    public void setSamID(int samID) {
         this.samID = samID;
     }
 
-    public String getname() {
+    public String getName() {
         return name;
     }
     
-    public void setname(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getemail(){
+    public String getEmail(){
         return email;
     }
     
-    public void setemail(String email){
+    public void setEmail(String email){
         this.email = email;
     }
     
-    public String getsMajor() {
+    public String getMajor() {
         return Major;
     }
 
-    public void setsMajor(String Major) {
+    public void setMajor(String Major) {
         this.Major = Major;
     }
 
-    public void setsMinor(String Minor) {
+    public void setMinor(String Minor) {
         this.Minor = Minor;
     }
-    public String getsMinor() {
+    public String getMinor() {
         return Minor;
     }
 
