@@ -16,7 +16,7 @@ import java.util.Map;
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 import utils.GlobalData;
-import utils.SQLUtil;
+import dao.SQLUtil;
 
 /**
  *
