@@ -39,6 +39,7 @@ public class FrmAddMentor extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         txtDob = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
+        closeBtn = new javax.swing.JButton();
 
         setTitle("Add Mentor");
 
@@ -61,6 +62,13 @@ public class FrmAddMentor extends javax.swing.JInternalFrame {
             }
         });
 
+        closeBtn.setText("Close");
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,7 +80,7 @@ public class FrmAddMentor extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel7)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtDob, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
+                            .addComponent(txtDob, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -93,7 +101,10 @@ public class FrmAddMentor extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtUsername)
                                 .addComponent(txtPassword))))
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(closeBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,7 +135,9 @@ public class FrmAddMentor extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtDob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(btnAdd)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd)
+                    .addComponent(closeBtn))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -141,9 +154,14 @@ public class FrmAddMentor extends javax.swing.JInternalFrame {
         String dob = txtDob.getText();
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        dispose();
+    }//GEN-LAST:event_closeBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton closeBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

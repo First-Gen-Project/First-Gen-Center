@@ -29,7 +29,7 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtDob" pref="252" max="32767" attributes="0"/>
+                          <Component id="txtDob" pref="253" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -59,7 +59,11 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Component id="btnAdd" min="-2" pref="57" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="closeBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnAdd" min="-2" pref="57" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
@@ -99,7 +103,10 @@
                   <Component id="txtDob" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="closeBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="9" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -154,6 +161,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="closeBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Close"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
