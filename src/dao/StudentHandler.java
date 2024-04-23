@@ -19,19 +19,20 @@ public class StudentHandler {
         sqlUtil=new SQLUtil();
     }
 
-    public int addStudent(int samID, String name, String email, String Major, String Minor, double gpa, int mtrId, String Dob) {
-        String cmdTemplate = "insert into Student (samID, name, email, Major, Minor, GPA, mtrId, Dob) values (%d, '%s', '%s', '%s', '%s', %f, %d, '%s')";
-        String cmd = String.format(cmdTemplate, name, Major, Minor, gpa, mtrId, Dob);
-    
-        try (PreparedStatement preparedStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate)){
+    public int addStudent(int samID, String name, String email, String Major, String Minor, double gpa, int mtrId, String Dob) 
+    {
+        String peeTemplate = "INSERT INTO person (samID, name, email, date_of_birth) VALUES (%d,'%s','%s','%s')";
+        String pee = String.format(peeTemplate, samID, name, email,Dob);
+        String cmdTemplate = "INSERT INTO Student (samID , Major, Minor, GPA, mtrId, date_of_birth) VALUES (%d, '%s', '%s', %f, %d, '%s')";
+        String cmd = String.format(cmdTemplate, samID, Major, Minor, gpa, mtrId, Dob);
+        try (PreparedStatement preparedStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate))
+        {
             preparedStatement.setInt(1, samID);
-            preparedStatement.setString(2, name);
-            preparedStatement.setString(3, email);
-            preparedStatement.setString(4, Major);
-            preparedStatement.setString(5, Minor);
-            preparedStatement.setDouble(6, gpa);
-            preparedStatement.setInt(7, mtrId);
-            preparedStatement.setString(8, Dob);
+            preparedStatement.setString(2, Major);
+            preparedStatement.setString(3, Minor);
+            preparedStatement.setDouble(4, gpa);
+            preparedStatement.setInt(5 ,mtrId);
+            preparedStatement.setString(6, Dob);
             return preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(StudentHandler.class.getName()).log(Level.SEVERE, null, ex);
