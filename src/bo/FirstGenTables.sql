@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS firstgen; 
 
 CREATE DATABASE firstgen;
 USE firstgen;
@@ -21,10 +22,14 @@ CREATE TABLE IF NOT EXISTS mentor (
 -- Create the Student table
 CREATE TABLE IF NOT EXISTS student (
     samID INT PRIMARY KEY,
+    name VARCHAR(255),
+    --email VARCHAR(255) UNIQUE,
     major VARCHAR(255),
     minor VARCHAR(255) DEFAULT NULL,
     gpa DECIMAL(3, 2),
     mtrId INT,
+    FOREIGN KEY (name) REFERENCES person(name),
+    FOREIGN KEY (email) REFERENCES person(email),
     FOREIGN KEY (samID) REFERENCES person(samID),
     FOREIGN KEY (mtrID) REFERENCES mentor(samID)
 );
