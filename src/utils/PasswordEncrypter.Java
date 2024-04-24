@@ -8,14 +8,14 @@ import java.util.logging.Logger;
 
 public class PasswordEncrypter{
     public static String encryptPassword(String password){
-        String result = "";
+      String result = "";
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] mdRet = md.digest(password.getBytes());
-            result = Base64.getEncoder().encodeToString(mdRet);
+            password = Base64.getEncoder().encodeToString(mdRet);
         }catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(PasswordEncrypter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return result;
+        return password;
     }
 }
