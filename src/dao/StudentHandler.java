@@ -58,7 +58,10 @@ public class StudentHandler {
     public List<Student> loadStudents(String keyword){
         
             List<Student> students = new ArrayList<>();
-            String cmdTemplate = "select samID, name, email, dadte_of_birth, Major, Minor, GPA, mtrId from Student where name like '%s'";
+            String cmdTemplate = "SELECT person.samID, person.name, person.email, person.date_of_birth, student.Major, student.Minor, student.GPA, student.mtrId "
+                               + "FROM person "
+                               + "INNER JOIN student ON person.samID = student.samID";
+
             String cmd = String.format(cmdTemplate, "%" + keyword + "%");
             ResultSet rs = sqlUtil.executeQuery(cmd);
         try {    
