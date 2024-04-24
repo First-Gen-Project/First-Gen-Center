@@ -16,7 +16,7 @@ public class StudentHandler {
     private SQLUtil sqlUtil;
 
     public StudentHandler(){
-        sqlUtil=new SQLUtil();
+        sqlUtil = new SQLUtil();
     }
 
     public int addStudent(int samID, String name, String email, String Major, String Minor, double gpa, int mtrId, String date_of_birth) 
