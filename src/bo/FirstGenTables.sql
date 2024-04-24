@@ -74,5 +74,5 @@ CREATE TABLE IF NOT EXISTS application_info (
     FOREIGN KEY (app_id) REFERENCES application(samID)
 );
 
-INSERT INTO student(samID, name, major, minor, gpa, mtrId) VALUES ('33994', 'tom', 'science', 'food', '3.55', '89239');
+--INSERT INTO student(samID, name, major, minor, gpa, mtrId) VALUES ('33994', 'tom', 'science', 'food', '3.55', '89239'); 
 
