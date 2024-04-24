@@ -15,16 +15,16 @@ public class MentorHandler {
 
     public Mentor login(String username, String password) {
         Mentor mentor = null;
-        String encryptedPassword = PasswordEncrypter.encryptPassword(password);
-        String stm = String.format("SELECT ALL FROM Mentor WHERE mtrUsername='%s' AND mtrPassword='%s'", username, encryptedPassword);
+        password = PasswordEncrypter.encryptPassword(password);
+        String stm = String.format("SELECT * from mentor JOIN person WHERE username='%s' AND password='%s'", username, password);
         ResultSet rsMentor = sqlUtil.executeQuery(stm);
 
         try {
             if (rsMentor != null && rsMentor.next()) {
-                int mtrId = rsMentor.getInt("mtrId");
-                String mtrName = rsMentor.getString("mtrName");
-                String dob=rsMentor.getString("dob");
-                mentor = new Mentor(mtrId, mtrName, username, password, dob);
+                int mtrId = rsMentor.getInt("samId");
+                String mtrName = rsMentor.getString("name");
+                String date_of_birth=rsMentor.getString("date_of_birth");
+                mentor = new Mentor(mtrId, mtrName, username, password, date_of_birth);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
