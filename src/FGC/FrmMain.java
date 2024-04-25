@@ -69,7 +69,7 @@ public class FrmMain extends javax.swing.JFrame {
         });
         tblStudents.setModel(tblModel);
     }
-    
+    pp
     public FrmMain() {
         initComponents();
         populateStudents();
