@@ -13,7 +13,7 @@ import dao.PasswordEncrypter;
  */
 public class PETest {
     public static void main(String[] args) {
-        String pass = "jones";
+        String pass = "mentor1";
         System.out.println(PasswordEncrypter.encryptPassword(pass));
     }
 

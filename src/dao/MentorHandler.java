@@ -15,6 +15,7 @@ public class MentorHandler {
 
     public Mentor login(String username, String password) {
         Mentor mentor = null;
+        //Encryption
         password = PasswordEncrypter.encryptPassword(password);
         String stm = String.format("SELECT * from mentor JOIN person WHERE username='%s' AND password='%s'", username, password);
         ResultSet rsMentor = sqlUtil.executeQuery(stm);

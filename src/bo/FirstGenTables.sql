@@ -75,11 +75,14 @@ CREATE TABLE IF NOT EXISTS application_info (
 );
 
 -- INSERT INTO student(samID, name, major, minor, gpa, mtrId) VALUES ('33994', 'tom', 'science', 'food', '3.55', '89239'); 
-select * from mentor;
-select * from person;
+-- Dummy Data Queries
+
 insert into person values(1, 'Mentor1', 'mentor1@firstgen.com', '2000-01-01');
 insert into mentor values(1, 'mentor1', 'mentor1');
-select * from mentor;
 
+update mentor set password = 'dzZpLdLX5wJ3ZQVlVNgEMIAgohibt2k444Gqt6PuUlQ='
+where samID = 1;
+
+select * from mentor;
 select * from student;
 select * from person;

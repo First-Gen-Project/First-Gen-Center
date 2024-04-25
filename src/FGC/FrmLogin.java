@@ -115,6 +115,7 @@ public class FrmLogin extends javax.swing.JInternalFrame {
         Mentor mtr = new MentorHandler().login(username, password);
         if (mtr != null) {
             GlobalData.mtr = mtr;
+            JOptionPane.showMessageDialog(this, "Login Successful");
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Incorrect username and password");
