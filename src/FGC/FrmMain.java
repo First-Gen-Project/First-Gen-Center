@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import utils.GlobalData;
 import utils.SQLUtil;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,7 +36,6 @@ public class FrmMain extends javax.swing.JFrame {
     Map<String, JInternalFrame>  forms = new HashMap<>();
     
     private StudentHandler studentHandler = new StudentHandler();
-    
     private void refreshTableStudents(){
         populateStudents();       
     }
@@ -126,7 +126,7 @@ public class FrmMain extends javax.swing.JFrame {
         tblStudents = new javax.swing.JTable();
         txtKeyword = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         txtStudents = new java.awt.Label();
         btnRefresh = new javax.swing.JButton();
@@ -186,10 +186,10 @@ public class FrmMain extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Delete");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -242,7 +242,7 @@ public class FrmMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnRefresh)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnDelete)
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
@@ -257,7 +257,7 @@ public class FrmMain extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(btnDelete)
                     .addComponent(btnRefresh))
                 .addContainerGap())
         );
@@ -445,10 +445,21 @@ public class FrmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtKeywordActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+        int SelectedRow = tblStudents.getSelectedRow();
+        if(SelectedRow!=-1){
+            //Performs the delete
+            int samID = (int)tblStudents.getValueAt(SelectedRow,0);
+            int ret = JOptionPane.showConfirmDialog(this, String.format("samId &d",samID));
+            if(ret==JOptionPane.OK_OPTION){
+            studentHandler.deleteStudent(samID);
+            refreshTableStudents();
+        }else{
+            JOptionPane.showMessageDialog(this,"Please select a student to delete");
+            }}
+    }//GEN-LAST:event_btnDeleteActionPerformed
+        
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
         refreshTableStudents();
@@ -498,12 +509,12 @@ public class FrmMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
     private javax.swing.JMenuItem fileExit;
     private javax.swing.JMenuItem fileLogin;
     private javax.swing.JMenuItem fileLogout;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
