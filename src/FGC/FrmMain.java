@@ -12,11 +12,13 @@ import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 import utils.GlobalData;
 import utils.SQLUtil;
+import javax.swing.JDialog;
 
 /**
  *
@@ -33,24 +35,43 @@ public class FrmMain extends javax.swing.JFrame {
     Map<String, JInternalFrame>  forms = new HashMap<>();
     
     private StudentHandler studentHandler = new StudentHandler();
- 
+    
+    private void refreshTableStudents(){
+        populateStudents();       
+    }
+    List<Student> students;
     private void populateStudents(){
+        /*String[] colNames = new String[]{"samID", "name", "email", "date_of_birth", "Major", "Minor", "gpa", "mtrID"};
+        DefaultTableModel tm = new DefaultTableModel (colNames,0) {
+            @Override
+            public boolean isCellEditable (int i, int i1){
+                return false;
+            }          
+        };
+        
+        students = new StudentHandler().getStudents(keyword);
+        
+        students.forEach((s) -> {
+            tm.addRow(s.getRow());
+            
+        });
+        tblStudents.setModel(tm);*/
+        
         String keyword = txtKeyword.getText();
         List<Student> students = studentHandler.loadStudents(keyword);
         String columns[] = new String[]{
             "samID", "name", "email", "date_of_birth", "Major", "Minor", "gpa", "mtrID" 
         };
-        DefaultTableModel tblModel = new DefaultTableModel(columns,0);
+        DefaultTableModel tblModel = new DefaultTableModel(columns,0) ;
         students.forEach((std)->{
             tblModel.addRow(std.getRow());
         });
         tblStudents.setModel(tblModel);
-
-        
     }
     
     public FrmMain() {
         initComponents();
+        populateStudents();
         forms.put("frmLogin", frmLogin);
         forms.put("frmAddStudent", frmAddStudent);
         forms.put("frmAddMentor", frmAddMentor);
@@ -58,10 +79,10 @@ public class FrmMain extends javax.swing.JFrame {
         forms.values().forEach((frm)->{
             jdpContainer.add(frm);
         });
-        populateStudents();
+        
     }
     private void showForm(String frmName){
-        showForm(frmName,false);
+        showForm(frmName,true);
     }
     private void showForm(String frmName, boolean checkLogin){
         if(checkLogin && GlobalData.mtr == null){
@@ -104,10 +125,11 @@ public class FrmMain extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStudents = new javax.swing.JTable();
         txtKeyword = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         txtStudents = new java.awt.Label();
+        btnRefresh = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         fileLogin = new javax.swing.JMenuItem();
@@ -157,7 +179,12 @@ public class FrmMain extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Search");
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Delete");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +216,13 @@ public class FrmMain extends javax.swing.JFrame {
                 .addGap(0, 2, Short.MAX_VALUE))
         );
 
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -197,15 +231,17 @@ public class FrmMain extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(txtKeyword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnSearch)
                         .addGap(6, 6, 6))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnRefresh)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(14, 14, 14))
         );
@@ -216,11 +252,13 @@ public class FrmMain extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnSearch))
                 .addGap(6, 6, 6)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(btnRefresh))
                 .addContainerGap())
         );
 
@@ -411,6 +449,16 @@ public class FrmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        refreshTableStudents();
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        populateStudents();
+    }//GEN-LAST:event_btnSearchActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -450,10 +498,11 @@ public class FrmMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JMenuItem fileExit;
     private javax.swing.JMenuItem fileLogin;
     private javax.swing.JMenuItem fileLogout;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -472,7 +521,7 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mngStudentAdd;
     private javax.swing.JMenuItem mngStudentDelete;
     private javax.swing.JMenuItem mngStudentUpdate;
-    private javax.swing.JTable tblStudents;
+    public javax.swing.JTable tblStudents;
     private javax.swing.JTextField txtKeyword;
     private java.awt.Label txtStudents;
     private javax.swing.JCheckBoxMenuItem viewApplication;

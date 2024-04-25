@@ -56,8 +56,7 @@ public class StudentHandler {
         List<Student> students = new ArrayList<>();
         String cmdTemplate = "SELECT person.samID, person.name, person.email, person.date_of_birth, student.Major, student.Minor, student.GPA, student.mtrID "
                 + "FROM person "
-                + "INNER JOIN student ON person.samID = student.samID"
-                + "WHERE name LIKE '%s'";
+                + "INNER JOIN student ON person.samID = student.samID";
 
         String cmd = String.format(cmdTemplate, "%" + keyword + "%");
         ResultSet rs = sqlUtil.executeQuery(cmd);
@@ -70,7 +69,7 @@ public class StudentHandler {
                 String Major = rs.getString("Major");
                 String Minor = rs.getString("Minor");
                 double gpa = rs.getDouble("gpa");
-                int mtrID = rs.getInt("mtrName");
+                int mtrID = rs.getInt("mtrID");
               
                 Student student = new Student(samID, name, email, date_of_birth, Major, Minor, gpa, mtrID);
                 students.add(student);
