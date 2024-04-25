@@ -2,7 +2,8 @@ package dao;
 
 import utils.SQLUtil;
 import bo.Mentor;
-
+import java.util.List;
+import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -45,5 +46,25 @@ public class MentorHandler {
         String encryptedPassword = PasswordEncrypter.encryptPassword(password);
         String stm = String.format("UPDATE Mentor SET mtrUsername='%s', mtrPassword='%s', mtrName='%s' WHERE mtrId=%d", username, encryptedPassword, name, mtrId);
         return sqlUtil.executeUpdate(stm) > 0;
+    }
+    public List<Mentor> loadMentors()
+    {
+        List<Mentor> mtr = new ArrayList<>();
+        try{
+            String statement = "SELECT * FROM Mentor";
+            ResultSet rsMentors = sqlUtil.executeQuery(statement);
+            while (rsMentors.next())
+            {
+                int mtrID = rsMentors.getInt("mtrID");
+                String mName =rsMentors.getString("name");
+                Mentor sc = new Mentor(mtrID, mName);
+                mtr.add(sc);
+            }
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        return mtr;
     }
 }
