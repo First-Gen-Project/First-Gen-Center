@@ -1,34 +1,39 @@
 package bo;
 
 import java.util.Vector;
+import dao.StudentHandler;
 
 public class Student{
     private int samID;
     private String name;
     private String email;
+    private String date_of_birth;
     private String Major;
     private String Minor;
     private double GPA;
-    private int mtrId;
+    private int mtrID;
     private String dob;
 
-    public Student(int samID, String name, String Major, String Minor, double GPA, int mtrId, String dob) {
+    public Student(int samID, String name, String email, String date_of_birth, String Major, String Minor, double GPA, int mtrID) {
         this.samID = samID;
         this.name = name;
+        this.email = email;
+        this.date_of_birth = date_of_birth;
         this.Major = Major;
         this.Minor = Minor;
         this.GPA = GPA;
-        this.mtrId = mtrId;
+        this.mtrID = mtrID;
     }
     public Vector<Object> getRow(){
         Vector<Object> ret = new Vector<>();
         ret.add(this.samID);
         ret.add(this.name);
         ret.add(this.email);
+        ret.add(this.date_of_birth);
         ret.add(this.Major);
         ret.add(this.Minor);
         ret.add(this.GPA);
-        ret.add(this.mtrId);
+        ret.add(this.mtrID);
         return ret;
     }
    
@@ -56,6 +61,13 @@ public class Student{
     public void setemail(String email){
         this.email = email;
     }
+    public String getdate_of_birth(){
+        return date_of_birth;
+    }
+    
+    public void setdate_of_birth(String date_of_birth){
+        this.email = date_of_birth;
+    }
     
     public String getsMajor() {
         return Major;
@@ -81,19 +93,13 @@ public class Student{
     }
 
     public int getMtrId() {
-        return mtrId;
+        return mtrID;
     }
 
-    public void setMtrId(int mtrId) {
-        this.mtrId = mtrId;
+    public void setMtrId(int mtrID) {
+        this.mtrID = mtrID;
     }
 
-    public void setsDob(String dob) {
-        this.dob = dob;
-    }
 
-    public String getsDob() {
-        return dob;
-    }
 }
 

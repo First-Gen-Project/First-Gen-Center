@@ -38,9 +38,9 @@ public class FrmMain extends javax.swing.JFrame {
         String keyword = txtKeyword.getText();
         List<Student> students = studentHandler.loadStudents(keyword);
         String columns[] = new String[]{
-            "SamID", "Name", "Email", "Dob", "Major", "Minor", "gpa", "mtrId" 
+            "samID", "name", "email", "date_of_birth", "Major", "Minor", "gpa", "mtrID" 
         };
-        DefaultTableModel tblModel = new DefaultTableModel(columns,7);
+        DefaultTableModel tblModel = new DefaultTableModel(columns,0);
         students.forEach((std)->{
             tblModel.addRow(std.getRow());
         });
@@ -144,7 +144,7 @@ public class FrmMain extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
         tblStudents.setColumnSelectionAllowed(true);
@@ -444,6 +444,7 @@ public class FrmMain extends javax.swing.JFrame {
                FrmMain frmMain = new FrmMain();
                frmMain.setSize(Toolkit.getDefaultToolkit().getScreenSize());
                frmMain.setVisible(true);
+              
             }
         });
     }
