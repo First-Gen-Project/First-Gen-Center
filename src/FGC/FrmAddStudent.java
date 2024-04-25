@@ -218,7 +218,7 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
         double GPA = Double.parseDouble(txtGPA.getText());
         int mtrID = Integer.parseInt(txtMtrID.getText());
         String date_of_birth = txtDate_of_birth.getText();
-        int ret = studentHandler.addStudent(samID, name, email, Major, Minor, GPA, mtrID, date_of_birth);
+        int ret = studentHandler.addStudent(samID, name, email, date_of_birth, Major, Minor, GPA, mtrID);
         if(ret == 0){
             JOptionPane.showMessageDialog(this, "Failed", "Failed", JOptionPane.ERROR_MESSAGE);
         }else{
