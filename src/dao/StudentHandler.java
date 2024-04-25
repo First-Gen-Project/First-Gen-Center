@@ -62,7 +62,7 @@ public class StudentHandler {
         ResultSet rs = sqlUtil.executeQuery(cmd);
         try {
             while (rs != null && rs.next()) {
-                int samID = rs.getInt("samID");
+                int samId = rs.getInt("samId");
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String date_of_birth = rs.getString("date_of_birth");
@@ -71,7 +71,7 @@ public class StudentHandler {
                 double gpa = rs.getDouble("gpa");
                 int mtrID = rs.getInt("mtrID");
               
-                Student student = new Student(samID, name, email, date_of_birth, Major, Minor, gpa, mtrID);
+                Student student = new Student(samId, name, email, date_of_birth, Major, Minor, gpa, mtrID);
                 students.add(student);
             }
         } catch (SQLException ex) {
@@ -81,7 +81,8 @@ public class StudentHandler {
     }
 
     public int deleteStudent(int samID) {
-        String cmd = String.format("delete from student samID=%d", samID);
+        String cmdTemplate ="Delete from student where samID = %s" ;
+        String cmd = String.format(cmdTemplate, samID);
         return sqlUtil.executeUpdate(cmd);
 
     }

@@ -17,7 +17,7 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
     private void populateData(){
        
     }
-    /**
+    /**private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt
      * Creates new form FrmAddStudent2
      */
     public FrmAddStudent() {

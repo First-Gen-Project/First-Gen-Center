@@ -451,7 +451,7 @@ public class FrmMain extends javax.swing.JFrame {
         if(SelectedRow!=-1){
             //Performs the delete
             int samID = (int)tblStudents.getValueAt(SelectedRow,0);
-            int ret = JOptionPane.showConfirmDialog(this, String.format("samId &d",samID));
+            int ret = JOptionPane.showConfirmDialog(this, String.format("samId '%s'",samID));
             if(ret==JOptionPane.OK_OPTION){
             studentHandler.deleteStudent(samID);
             refreshTableStudents();
