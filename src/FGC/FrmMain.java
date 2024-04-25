@@ -32,6 +32,7 @@ public class FrmMain extends javax.swing.JFrame {
      */
     FrmLogin frmLogin = new FrmLogin();
     FrmAddStudent frmAddStudent = new FrmAddStudent();
+    FrmUpdateStudent frmUpdateStudent = new FrmUpdateStudent();
     FrmAddMentor frmAddMentor = new FrmAddMentor();
     Map<String, JInternalFrame>  forms = new HashMap<>();
     
@@ -74,6 +75,7 @@ public class FrmMain extends javax.swing.JFrame {
         populateStudents();
         forms.put("frmLogin", frmLogin);
         forms.put("frmAddStudent", frmAddStudent);
+        forms.put("frmUpdateStudent", frmUpdateStudent);
         forms.put("frmAddMentor", frmAddMentor);
         //Add add these to the JDesktopPage
         forms.values().forEach((frm)->{
@@ -418,7 +420,7 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_mngStudentAddActionPerformed
 
     private void mngStudentUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngStudentUpdateActionPerformed
-        // TODO add your handling code here:
+        showForm("frmUpdateStudent");
     }//GEN-LAST:event_mngStudentUpdateActionPerformed
 
     private void mngStudentDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngStudentDeleteActionPerformed
