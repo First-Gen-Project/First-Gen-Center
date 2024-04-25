@@ -7,13 +7,14 @@ import dao.StudentHandler;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-
+import fgc.FrmMain;
 /**
  *
  * @author hjone
  */
+ 
 public class FrmAddStudent extends javax.swing.JInternalFrame {
-  
+ 
     private void populateData(){
        
     }
@@ -24,7 +25,7 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
         initComponents();
         populateData();
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -224,6 +225,8 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Succeeded", "Succeeded", JOptionPane.INFORMATION_MESSAGE);
         } 
+        
+        dispose();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed

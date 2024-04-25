@@ -4,6 +4,8 @@
  */
 package fgc;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hjone
@@ -146,13 +148,23 @@ public class FrmAddMentor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // Get input values:
-        String sName = txtName.getText();
-        String sid = txtSid.getText();
-        String Major = txtEmail.getText();
-        String Minor = txtUsername.getText();
-        String GPA = txtPassword.getText();
-        String dob = txtDob.getText();
+        /* Get input values:
+        int samID = Integer.parseInt(txtSamID.getText());
+        String name = txtName.getText();
+        String email =txtEmail.getText();
+        String Username = txtUsername.getText();
+        String password = txtpassword.getText();
+        double GPA = Double.parseDouble(txtGPA.getText());
+        int mtrID = Integer.parseInt(txtMtrID.getText());
+        String date_of_birth = txtDate_of_birth.getText();
+        int ret = mentorHandler.addMentor(samID, name, email, date_of_birth, username, password, GPA, mtrID);
+        if(ret == 0){
+            JOptionPane.showMessageDialog(this, "Failed", "Failed", JOptionPane.ERROR_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "Succeeded", "Succeeded", JOptionPane.INFORMATION_MESSAGE);
+        } 
+        
+        dispose();*/
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed

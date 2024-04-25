@@ -31,12 +31,13 @@ public class FrmMain extends javax.swing.JFrame {
      */
     FrmLogin frmLogin = new FrmLogin();
     FrmAddStudent frmAddStudent = new FrmAddStudent();
+    FrmUpdateStudent frmUpdateStudent = new FrmUpdateStudent();
     FrmAddMentor frmAddMentor = new FrmAddMentor();
     Map<String, JInternalFrame>  forms = new HashMap<>();
     
     private StudentHandler studentHandler = new StudentHandler();
     
-    private void refreshTableStudents(){
+    public void refreshTableStudents(){
         populateStudents();       
     }
     List<Student> students;
@@ -74,6 +75,7 @@ public class FrmMain extends javax.swing.JFrame {
         populateStudents();
         forms.put("frmLogin", frmLogin);
         forms.put("frmAddStudent", frmAddStudent);
+        forms.put("frmUpdateStudent", frmUpdateStudent);
         forms.put("frmAddMentor", frmAddMentor);
         //Add add these to the JDesktopPage
         forms.values().forEach((frm)->{
@@ -415,10 +417,12 @@ public class FrmMain extends javax.swing.JFrame {
 
     private void mngStudentAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngStudentAddActionPerformed
         showForm("frmAddStudent");
+        
+        
     }//GEN-LAST:event_mngStudentAddActionPerformed
 
     private void mngStudentUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngStudentUpdateActionPerformed
-        // TODO add your handling code here:
+        showForm("frmUpdateStudent",true);
     }//GEN-LAST:event_mngStudentUpdateActionPerformed
 
     private void mngStudentDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngStudentDeleteActionPerformed
@@ -457,6 +461,7 @@ public class FrmMain extends javax.swing.JFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         populateStudents();
+        refreshTableStudents();
     }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
