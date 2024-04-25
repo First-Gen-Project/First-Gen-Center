@@ -422,7 +422,9 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_mngStudentAddActionPerformed
 
     private void mngStudentUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngStudentUpdateActionPerformed
-        showForm("frmUpdateStudent",true);
+
+        showForm("frmUpdateStudent");
+
     }//GEN-LAST:event_mngStudentUpdateActionPerformed
 
     private void mngStudentDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngStudentDeleteActionPerformed
