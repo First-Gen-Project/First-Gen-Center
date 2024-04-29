@@ -15,11 +15,6 @@ public class Mentor {
         this.password=password;
         this.dob=dob;
     }
-    public Mentor(int mtrId, String mtrName)
-    {
-        this.mtrId = mtrId;
-        this.mtrName = mtrName;
-    }
 
     public int getMtrId() {
         return mtrId;
