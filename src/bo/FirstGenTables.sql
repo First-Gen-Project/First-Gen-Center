@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS student (
     minor VARCHAR(255) DEFAULT NULL,
     gpa DECIMAL(3, 2),
     mtrId INT, 
-    FOREIGN KEY (samID) REFERENCES person(samID),
+    FOREIGN KEY (samID) REFERENCES person(samID) ON DELETE CASCADE,
     FOREIGN KEY (mtrID) REFERENCES mentor(samID)
 );
 
