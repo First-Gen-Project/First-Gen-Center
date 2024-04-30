@@ -79,15 +79,18 @@ public class MentorHandler {
     }
 
     public List<Mentor> loadMentors(String keywordmtr) {
-
+        
         List<Mentor> mentors = new ArrayList<>();
-        String cmdTemplate = "SELECT person.samID, person.name, person.email, person.date_of_birth, mentor.username, mentor.password"
-                + "FROM person INNER JOIN mentor ON person.samID = mentor.samID"
-                + " WHERE person.name LIKE '%s'";
-        String cmd = String.format(cmdTemplate, "%" + keywordmtr + "%");
-        ResultSet rs = sqlUtil.executeQuery(cmd);
-        try {
-            while (rs != null && rs.next()) {
+        String cmdTemplate = "SELECT person.samID, person.name, person.email, person.date_of_birth, mentor.username, mentor.password "
+                + "FROM person "
+                + "INNER JOIN mentor ON person.samID = mentor.samID "
+                + "WHERE person.name LIKE '%s'";
+        
+        try (PreparedStatement stmt = sqlUtil.getConnection().prepareStatement(cmdTemplate)) 
+        {
+            String cmd = String.format(cmdTemplate, "%" + keywordmtr + "%");
+            ResultSet rs = sqlUtil.executeQuery(cmd);
+            while (rs.next()) {
                 int samID = rs.getInt("samID");
                 String name = rs.getString("name");
                 String email = rs.getString("email");

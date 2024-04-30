@@ -42,7 +42,7 @@ public class FrmAddMentors extends javax.swing.JInternalFrame {
         txtName = new javax.swing.JTextField();
         txtSamID = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        txtDate_of_Birth = new javax.swing.JTextField();
+        txtdate_of_birth = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
@@ -82,9 +82,9 @@ public class FrmAddMentors extends javax.swing.JInternalFrame {
             }
         });
 
-        txtDate_of_Birth.addActionListener(new java.awt.event.ActionListener() {
+        txtdate_of_birth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDate_of_BirthActionPerformed(evt);
+                txtdate_of_birthActionPerformed(evt);
             }
         });
 
@@ -152,7 +152,7 @@ public class FrmAddMentors extends javax.swing.JInternalFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                                        .addComponent(txtDate_of_Birth)
+                                        .addComponent(txtdate_of_birth)
                                         .addComponent(txtUsername))))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -180,7 +180,7 @@ public class FrmAddMentors extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDate_of_Birth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdate_of_birth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -205,7 +205,7 @@ public class FrmAddMentors extends javax.swing.JInternalFrame {
         int samID = Integer.parseInt(txtSamID.getText());
         String name = txtName.getText();
         String email =txtEmail.getText();
-        String date_of_birth = txtPassword.getText();
+        String date_of_birth = txtdate_of_birth.getText();
         String username = txtUsername.getText();
         String password = txtPassword.getText();
         int ret = mentorhandler.addMentor(samID, name, email, date_of_birth, username, password);
@@ -231,9 +231,9 @@ public class FrmAddMentors extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
 
-    private void txtDate_of_BirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDate_of_BirthActionPerformed
+    private void txtdate_of_birthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdate_of_birthActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDate_of_BirthActionPerformed
+    }//GEN-LAST:event_txtdate_of_birthActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
@@ -257,11 +257,11 @@ public class FrmAddMentors extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField txtDate_of_Birth;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtSamID;
     private javax.swing.JTextField txtUsername;
+    private javax.swing.JTextField txtdate_of_birth;
     // End of variables declaration//GEN-END:variables
 }

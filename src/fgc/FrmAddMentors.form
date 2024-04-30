@@ -57,7 +57,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="txtEmail" pref="253" max="32767" attributes="0"/>
-                                      <Component id="txtDate_of_Birth" max="32767" attributes="0"/>
+                                      <Component id="txtdate_of_birth" max="32767" attributes="0"/>
                                       <Component id="txtUsername" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -98,7 +98,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtDate_of_Birth" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtdate_of_birth" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
@@ -161,9 +161,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDate_of_Birth">
+    <Component class="javax.swing.JTextField" name="txtdate_of_birth">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDate_of_BirthActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtdate_of_birthActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
