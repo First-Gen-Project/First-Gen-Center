@@ -528,6 +528,14 @@ public class FrmMain extends javax.swing.JFrame {
 
     private void fileLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileLogoutActionPerformed
         // TODO add your handling code here:
+        GlobalData.mtr = null;
+        for(Map.Entry<String, JInternalFrame> entry : forms.entrySet())
+        {
+            JInternalFrame value = entry.getValue();
+            value.dispose();
+        }
+        JOptionPane.showMessageDialog(this,"LogOut Succeeded");
+        
     }//GEN-LAST:event_fileLogoutActionPerformed
 
     private void fileExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileExitActionPerformed
