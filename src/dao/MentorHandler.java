@@ -112,7 +112,7 @@ public class MentorHandler {
     }
 
     public int deletementor(int samID) {
-        String cmdTemplate ="Delete from mentor where samID = %s" ;
+        String cmdTemplate ="DELETE from person where samID=%s" ;
         String cmd = String.format(cmdTemplate, samID);
         return sqlUtil.executeUpdate(cmd);
     }
@@ -170,10 +170,7 @@ public class MentorHandler {
     }
    
     
-    public boolean deleteMentor(int mtrId) {
-        String stm = String.format("DELETE FROM Mentor WHERE mtrId=%d", mtrId);
-        return sqlUtil.executeUpdate(stm) > 0;
-    }
+    
     public boolean updateMentor(int mtrId, String username, String password, String name, String dob) {
         String encryptedPassword = PasswordEncrypter.encryptPassword(password);
         String stm = String.format("UPDATE Mentor SET mtrUsername='%s', mtrPassword='%s', mtrName='%s' WHERE mtrId=%d", username, encryptedPassword, name, mtrId);

@@ -110,8 +110,7 @@ public class StudentHandler {
         return students;
     }
 
-    public int deleteStudent(int samID) {
-      
+    public int deleteStudent(int samID) {  
         String cmdTemplate ="DELETE from person where samID=%s" ;
         String cmd = String.format(cmdTemplate, samID);
         return sqlUtil.executeUpdate(cmd);
