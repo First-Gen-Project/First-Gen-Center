@@ -596,7 +596,7 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_txtKeywordmtrActionPerformed
 
     private void btnSearchmtrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchmtrActionPerformed
-        //populateMentors();
+        populateMentors();
     }//GEN-LAST:event_btnSearchmtrActionPerformed
 
     private void btnDeletemtrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletemtrActionPerformed
