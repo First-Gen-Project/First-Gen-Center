@@ -161,11 +161,8 @@ public class MentorHandler {
         }
         return mentor;
     }
-    public boolean addMentor(String username, String password, String name, String dob) {
-        String encryptedPassword = PasswordEncrypter.encryptPassword(password);
-        String stm = String.format("INSERT INTO Mentor (mtrUsername, mtrPassword, mtrName) VALUES ('%s', '%s', '%s')", username, encryptedPassword, name);
-        return sqlUtil.executeUpdate(stm) > 0;
-    }
+   
+    
     public boolean deleteMentor(int mtrId) {
         String stm = String.format("DELETE FROM Mentor WHERE mtrId=%d", mtrId);
         return sqlUtil.executeUpdate(stm) > 0;

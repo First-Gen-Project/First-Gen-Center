@@ -45,6 +45,9 @@ public class FrmMain extends javax.swing.JFrame {
     private void refreshTableStudents(){
         populateStudents();       
     }
+    private void refreshTableMentors(){
+        populateMentors();       
+    }
     List<Student> students;
     public void populateStudents(){
        
@@ -76,10 +79,11 @@ public class FrmMain extends javax.swing.JFrame {
     public FrmMain() {
         initComponents();
         populateStudents();
+        populateMentors();
         forms.put("frmLogin", frmLogin);
         forms.put("frmAddStudent", frmAddStudent);
         forms.put("frmUpdateStudent", frmUpdateStudent);
-        forms.put("frmAddMentor", frmAddMentors);
+        forms.put("frmAddMentors", frmAddMentors);
         //Add add these to the JDesktopPage
         forms.values().forEach((frm)->{
             jdpContainer.add(frm);
@@ -543,7 +547,7 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_mngStudentDeleteActionPerformed
 
     private void mngMentorAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngMentorAddActionPerformed
-        showForm("frmAddMentor");
+        showForm("frmAddMentors");
     }//GEN-LAST:event_mngMentorAddActionPerformed
 
     private void mngMentorUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngMentorUpdateActionPerformed
@@ -601,6 +605,8 @@ public class FrmMain extends javax.swing.JFrame {
 
     private void btnRefreshmtrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshmtrActionPerformed
         // TODO add your handling code here:
+        refreshTableMentors();
+
     }//GEN-LAST:event_btnRefreshmtrActionPerformed
 
     /**

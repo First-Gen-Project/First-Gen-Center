@@ -48,7 +48,13 @@ public class Mentor {
     public void setname(String mtrName) {
         this.name = mtrName;
     }
+    public String getdate_of_birth(){
+        return date_of_birth;
+    }
 
+    public void setdate_of_birth(String date_of_birth){
+        this.date_of_birth=date_of_birth;
+    }
     public String getUsername(){
         return username;
     }
@@ -65,12 +71,6 @@ public class Mentor {
         this.password=password;
     }
     
-    public String getdate_of_birth(){
-        return date_of_birth;
-    }
-
-    public void setdate_of_birth(String date_of_birth){
-        this.date_of_birth=date_of_birth;
-    }
+   
 }
 
