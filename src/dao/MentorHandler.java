@@ -4,6 +4,7 @@ import utils.SQLUtil;
 import bo.Mentor;
 import bo.Student;
 import dao.StudentHandler;
+import utils.PasswordEncrypter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,10 +22,13 @@ public class MentorHandler {
     } 
 
     public int addMentor(int samID, String name, String email, String date_of_birth, String username, String password){
+        PasswordEncrypter encrypter = new PasswordEncrypter();
         String peeTemplate = "INSERT INTO person (samID, name, email, date_of_birth) VALUES (?,?,?,?)";
         //String pee = String.format(peeTemplate, samID, name, email, date_of_birth);
         String cmdTemplate = "INSERT INTO mentor (samID , username, password) VALUES (?, ?, ?)";
         //String cmd = String.format(cmdTemplate, samID, Major, Minor, gpa, mtrID);
+        String encryptedPass = password;
+        encryptedPass = encrypter.encryptPassword(password);
         try (PreparedStatement personStatement = sqlUtil.getConnection().prepareStatement(peeTemplate); PreparedStatement mentorStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate);) {
             //parameters to insert into person table
             personStatement.setInt(1, samID);
@@ -35,7 +39,7 @@ public class MentorHandler {
             //parameters to insert into mentor table
             mentorStatement.setInt(1, samID);
             mentorStatement.setString(2, username);
-            mentorStatement.setString(3, password);
+            mentorStatement.setString(3, encryptedPass);
             //insertion transaction
             sqlUtil.getConnection().setAutoCommit(false);
             personStatement.executeUpdate();
