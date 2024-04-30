@@ -23,6 +23,7 @@ import utils.SQLUtil;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import fgc.FrmAddMentors;
+import fgc.FrmUpdateMentor;
 
 /**
  *
@@ -37,6 +38,7 @@ public class FrmMain extends javax.swing.JFrame {
     FrmAddStudent frmAddStudent = new FrmAddStudent();
     FrmUpdateStudent frmUpdateStudent = new FrmUpdateStudent();
     FrmAddMentors frmAddMentors = new FrmAddMentors();
+    FrmUpdateMentor frmUpdateMentor = new FrmUpdateMentor();
     
     Map<String, JInternalFrame>  forms = new HashMap<>();
     
@@ -84,6 +86,7 @@ public class FrmMain extends javax.swing.JFrame {
         forms.put("frmAddStudent", frmAddStudent);
         forms.put("frmUpdateStudent", frmUpdateStudent);
         forms.put("frmAddMentors", frmAddMentors);
+        forms.put("frmUpdateMentor", frmUpdateMentor);
         //Add add these to the JDesktopPage
         forms.values().forEach((frm)->{
             jdpContainer.add(frm);
@@ -129,15 +132,6 @@ public class FrmMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jdpContainer = new javax.swing.JDesktopPane();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblStudents = new javax.swing.JTable();
-        txtKeyword = new javax.swing.JTextField();
-        btnSearch = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        txtStudents = new java.awt.Label();
-        btnRefresh = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblMentors = new javax.swing.JTable();
@@ -147,6 +141,15 @@ public class FrmMain extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         txtStudents1 = new java.awt.Label();
         btnRefreshmtr = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblStudents = new javax.swing.JTable();
+        txtKeyword = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        txtStudents = new java.awt.Label();
+        btnRefresh = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         fileLogin = new javax.swing.JMenuItem();
@@ -171,9 +174,111 @@ public class FrmMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jdpContainer.setBackground(new java.awt.Color(0, 0, 0));
+        jdpContainer.setBackground(java.awt.Color.black);
         jdpContainer.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jdpContainer.setToolTipText("");
+
+        jPanel3.setBackground(new java.awt.Color(245, 100, 35));
+
+        tblMentors.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tblMentors.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblMentors);
+        tblMentors.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        txtKeywordmtr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKeywordmtrActionPerformed(evt);
+            }
+        });
+
+        btnSearchmtr.setText("Search");
+        btnSearchmtr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchmtrActionPerformed(evt);
+            }
+        });
+
+        btnDeletemtr.setText("Delete");
+        btnDeletemtr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletemtrActionPerformed(evt);
+            }
+        });
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 73, 144), 10));
+
+        txtStudents1.setAlignment(java.awt.Label.CENTER);
+        txtStudents1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        txtStudents1.setText("Mentors");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(txtStudents1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(txtStudents1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
+        );
+
+        btnRefreshmtr.setText("Refresh");
+        btnRefreshmtr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshmtrActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnRefreshmtr)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDeletemtr)
+                .addGap(14, 14, 14))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtKeywordmtr, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearchmtr)))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtKeywordmtr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchmtr))
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDeletemtr)
+                    .addComponent(btnRefreshmtr))
+                .addContainerGap())
+        );
 
         jPanel1.setBackground(new java.awt.Color(245, 100, 35));
 
@@ -259,7 +364,7 @@ public class FrmMain extends javax.swing.JFrame {
                         .addComponent(txtKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,132 +383,29 @@ public class FrmMain extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBackground(new java.awt.Color(245, 100, 35));
-
-        tblMentors.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tblMentors.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(tblMentors);
-        tblMentors.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        txtKeywordmtr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtKeywordmtrActionPerformed(evt);
-            }
-        });
-
-        btnSearchmtr.setText("Search");
-        btnSearchmtr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchmtrActionPerformed(evt);
-            }
-        });
-
-        btnDeletemtr.setText("Delete");
-        btnDeletemtr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeletemtrActionPerformed(evt);
-            }
-        });
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 73, 144), 10));
-
-        txtStudents1.setAlignment(java.awt.Label.CENTER);
-        txtStudents1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        txtStudents1.setText("Mentors");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(txtStudents1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtStudents1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        btnRefreshmtr.setText("Refresh");
-        btnRefreshmtr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshmtrActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnRefreshmtr)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDeletemtr)
-                .addGap(14, 14, 14))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtKeywordmtr, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearchmtr)))
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtKeywordmtr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchmtr))
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDeletemtr)
-                    .addComponent(btnRefreshmtr))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jdpContainer.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdpContainer.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpContainer.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpContainerLayout = new javax.swing.GroupLayout(jdpContainer);
         jdpContainer.setLayout(jdpContainerLayout);
         jdpContainerLayout.setHorizontalGroup(
             jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdpContainerLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 312, Short.MAX_VALUE))
         );
         jdpContainerLayout.setVerticalGroup(
             jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdpContainerLayout.createSequentialGroup()
                 .addGroup(jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 348, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jdpContainer, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(jdpContainer, java.awt.BorderLayout.CENTER);
 
         menuFile.setText("File");
 
@@ -561,6 +563,7 @@ public class FrmMain extends javax.swing.JFrame {
 
     private void mngMentorUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngMentorUpdateActionPerformed
         // TODO add your handling code here:
+        showForm("frmUpdateMentor");
     }//GEN-LAST:event_mngMentorUpdateActionPerformed
 
     private void mngMentorDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngMentorDeleteActionPerformed
@@ -609,17 +612,7 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchmtrActionPerformed
 
     private void btnDeletemtrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletemtrActionPerformed
-     int SelectedRow = tblMentors.getSelectedRow();
-        if(SelectedRow!=-1){
-            //Performs the delete
-            int samID = (int)tblMentors.getValueAt(SelectedRow,0);
-            int ret = JOptionPane.showConfirmDialog(this, String.format("samId '%s'",samID));
-            if(ret==JOptionPane.OK_OPTION){
-             mentorHandler.deletementor(samID);
-            refreshTableMentors();
-        }else{
-            JOptionPane.showMessageDialog(this,"Please select a student to delete");
-            }}
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnDeletemtrActionPerformed
 
     private void btnRefreshmtrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshmtrActionPerformed

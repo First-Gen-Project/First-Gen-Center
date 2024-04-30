@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS mentor (
     samID INT PRIMARY KEY,
     username VARCHAR(255) UNIQUE,
     password VARCHAR(255),
-    FOREIGN KEY (samID) REFERENCES person(samID)ON DELETE CASCADE
+    FOREIGN KEY (samID) REFERENCES person(samID)
 );
 
 -- Create the Student table

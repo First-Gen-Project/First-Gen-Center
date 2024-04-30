@@ -110,16 +110,11 @@ public class StudentHandler {
         return students;
     }
 
-    public int deleteStudent(int samID) {  
+    public int deleteStudent(int samID) {
+      
         String cmdTemplate ="DELETE from person where samID=%s" ;
         String cmd = String.format(cmdTemplate, samID);
         return sqlUtil.executeUpdate(cmd);
-    }
-
-    public int updateStudent(String name, String Major, String Minor, double gpa, int mtrID, String date_of_birth) {
-        String cmdTemplate = "update Student set name= ?, Major= ?, Minor= ? gpa= ?, mtrID= ?, date_of_birth= ?";
-        String stmStr = String.format(cmdTemplate, name, Major, Minor, gpa, mtrID);
-        return sqlUtil.executeUpdate(stmStr);
     }
 
     public List<Student> getStudents(String keyword) {
