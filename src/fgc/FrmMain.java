@@ -613,6 +613,18 @@ public class FrmMain extends javax.swing.JFrame {
 
     private void btnDeletemtrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletemtrActionPerformed
         // TODO add your handling code here:
+        int SelectedRow = tblMentors.getSelectedRow();
+        if(SelectedRow!=-1){
+            //Performs the delete
+            int samID = (int)tblMentors.getValueAt(SelectedRow,0);
+            int ret = JOptionPane.showConfirmDialog(this, String.format("samId '%s'",samID));
+            if(ret==JOptionPane.OK_OPTION){
+             mentorHandler.deletementor(samID);
+            refreshTableMentors();
+        }else{
+            JOptionPane.showMessageDialog(this,"Please select a student to delete");
+            }}
+        
     }//GEN-LAST:event_btnDeletemtrActionPerformed
 
     private void btnRefreshmtrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshmtrActionPerformed

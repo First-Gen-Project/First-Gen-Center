@@ -169,9 +169,4 @@ public class MentorHandler {
     }
    
     
-    public int deleteMentor(int mtrId) {
-        String stm = String.format("DELETE FROM person WHERE samId=%s", mtrId);
-        return sqlUtil.executeUpdate(stm);
-    }
-    
 }
