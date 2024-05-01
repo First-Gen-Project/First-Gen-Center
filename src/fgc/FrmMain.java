@@ -55,7 +55,7 @@ public class FrmMain extends javax.swing.JFrame {
         forms.put("frmLogin", frmLogin);
         forms.put("frmAddStudent", frmAddStudent);
         forms.put("frmUpdateStudent", frmUpdateStudent);
-        Tables-JInternalFrame
+       
         forms.put("frmAddMentors", frmAddMentors); 
         forms.put("frmViewStudent", frmViewStudent);
         forms.put("frmViewMentor", frmViewMentor);
@@ -106,10 +106,7 @@ public class FrmMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-
         jdpMainContainer = new javax.swing.JDesktopPane();
-
-      
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         fileLogin = new javax.swing.JMenuItem();
@@ -128,16 +125,12 @@ public class FrmMain extends javax.swing.JFrame {
         viewTables = new javax.swing.JMenu();
         viewStudents = new javax.swing.JMenuItem();
         viewMentors = new javax.swing.JMenuItem();
-        viewMentorss = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-      
-        jdpMainContainer.setBackground(new java.awt.Color(0, 0, 0));
+        jdpMainContainer.setBackground(java.awt.Color.black);
         jdpMainContainer.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jdpMainContainer.setToolTipText("");
-
-
 
         javax.swing.GroupLayout jdpMainContainerLayout = new javax.swing.GroupLayout(jdpMainContainer);
         jdpMainContainer.setLayout(jdpMainContainerLayout);
@@ -150,10 +143,7 @@ public class FrmMain extends javax.swing.JFrame {
             .addGap(0, 917, Short.MAX_VALUE)
         );
 
-       
         getContentPane().add(jdpMainContainer, java.awt.BorderLayout.CENTER);
-
-
 
         menuFile.setText("File");
 
@@ -263,14 +253,6 @@ public class FrmMain extends javax.swing.JFrame {
         });
         viewTables.add(viewMentors);
 
-        viewMentorss.setText("Mentors?");
-        viewMentorss.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewMentorssActionPerformed(evt);
-            }
-        });
-        viewTables.add(viewMentorss);
-
         menuView.add(viewTables);
 
         jMenuBar1.add(menuView);
@@ -341,11 +323,6 @@ public class FrmMain extends javax.swing.JFrame {
 
    
 
-    private void viewMentorssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMentorssActionPerformed
-        // TODO add your handling code here:
-       // showForm("frmViewMentors", false);
-    }//GEN-LAST:event_viewMentorssActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -402,7 +379,6 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mngStudentDelete;
     private javax.swing.JMenuItem mngStudentUpdate;
     private javax.swing.JMenuItem viewMentors;
-    private javax.swing.JMenuItem viewMentorss;
     private javax.swing.JMenuItem viewStudents;
     private javax.swing.JMenu viewTables;
     // End of variables declaration//GEN-END:variables

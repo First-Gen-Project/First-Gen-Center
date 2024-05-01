@@ -223,7 +223,7 @@ public class FrmViewMentor extends javax.swing.JInternalFrame {
             int samID = (int)tblMentors.getValueAt(SelectedRow,0);
             int ret = JOptionPane.showConfirmDialog(this, String.format("samId '%s'",samID));
             if(ret==JOptionPane.OK_OPTION){
-                mentorHandler.deleteMentor(samID);
+                mentorHandler.deletementor(samID);
                 refreshTableMentors();
             }else{
                 JOptionPane.showMessageDialog(this,"Please select a Mentor to delete");
