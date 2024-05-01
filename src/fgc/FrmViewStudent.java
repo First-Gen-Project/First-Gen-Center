@@ -84,6 +84,9 @@ public class FrmViewStudent extends javax.swing.JInternalFrame {
         btnRefresh = new javax.swing.JButton();
         txtStudents = new java.awt.Label();
 
+        setClosable(true);
+        setResizable(true);
+
         jStudentsContainer.setBackground(new java.awt.Color(245, 100, 35));
 
         tblStudents.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -192,7 +195,7 @@ public class FrmViewStudent extends javax.swing.JInternalFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(15, 15, 15)
-                    .addComponent(jStudentsContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStudentsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap(14, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -204,7 +207,7 @@ public class FrmViewStudent extends javax.swing.JInternalFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(25, 25, 25)
-                    .addComponent(jStudentsContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStudentsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap(43, Short.MAX_VALUE)))
         );
 

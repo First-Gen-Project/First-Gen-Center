@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS application_info (
 -- Dummy Data Queries
 
 insert into person values(000376298, 'Dougathy Gilbert', 'dgilbert@shsu.edu', '2004-04-27');
-insert into mentor values(000376298, 'dGilbert', 'PhamLover<3!');
+insert into mentor values(000376298, 'dGilbert', 'BiggestPhamFan<3!');
 insert into person values(1, 'James', 'James@shsu.edu', '1968-04-27');
 insert into mentor values(1, 'mentor1', 'mentor1');
 insert into person values(000289736, 'Gary Dinglesnorpee', 'gqd123@shsu.edu', '2015-06-10');
@@ -105,7 +105,12 @@ insert into student_event values(000289736, 'Yes', 1, 'Party Rokkers');
 
 update mentor set password = 'dzZpLdLX5wJ3ZQVlVNgEMIAgohibt2k444Gqt6PuUlQ='
 where samID = 1;
-
+update mentor set password = 'E0E3r4fKTxz6OK+6H4vp3SBChhtmyJsFdlg74quFJEk='
+where samID = 234768;
+update mentor set password = 'Tyb2M0cuvomtCQm97DiYCsfIO95zdqXFO0gdTU2Jaz0='
+where samID = 376298;
+update mentor set password = 'm+blPYhyqbp3SyqVRmjMViWujN6sSdNG6nTfs5HcEk4='
+where samID = 434461;
 
 select * from person;
 select * from mentor;

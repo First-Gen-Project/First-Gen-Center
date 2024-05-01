@@ -55,7 +55,7 @@ public class FrmMain extends javax.swing.JFrame {
         forms.put("frmLogin", frmLogin);
         forms.put("frmAddStudent", frmAddStudent);
         forms.put("frmUpdateStudent", frmUpdateStudent);
-       
+        forms.put("frmUpdateMentor", frmUpdateMentor);
         forms.put("frmAddMentors", frmAddMentors); 
         forms.put("frmViewStudent", frmViewStudent);
         forms.put("frmViewMentor", frmViewMentor);
@@ -351,6 +351,7 @@ public class FrmMain extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                FrmMain frmMain = new FrmMain();
@@ -359,6 +360,7 @@ public class FrmMain extends javax.swing.JFrame {
               
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

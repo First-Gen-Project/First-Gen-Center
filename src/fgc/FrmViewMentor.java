@@ -84,6 +84,9 @@ public class FrmViewMentor extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         txtStudents = new java.awt.Label();
 
+        setClosable(true);
+        setResizable(true);
+
         jStudentsContainer.setBackground(new java.awt.Color(245, 100, 35));
 
         tblMentors.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -191,7 +194,7 @@ public class FrmViewMentor extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jStudentsContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jStudentsContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(

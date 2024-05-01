@@ -13,8 +13,14 @@ import dao.PasswordEncrypter;
  */
 public class PETest {
     public static void main(String[] args) {
-        String pass = "mentor1";
+        String pass = "ShutUpMeg*1738";
+        String pass2 = "BiggestPhamFan<3!";
+        String pass3 = "Seven7Seven$$";
+        
         System.out.println(PasswordEncrypter.encryptPassword(pass));
+        System.out.println(PasswordEncrypter.encryptPassword(pass2));
+        System.out.println(PasswordEncrypter.encryptPassword(pass3));
+        
     }
 
 
