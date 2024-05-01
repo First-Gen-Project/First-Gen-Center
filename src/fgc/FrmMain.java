@@ -23,6 +23,7 @@ import utils.SQLUtil;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import fgc.FrmAddMentors;
+import fgc.FrmUpdateMentor;
 
 /**
  *
@@ -39,6 +40,7 @@ public class FrmMain extends javax.swing.JFrame {
     FrmViewMentor frmViewMentor = new FrmViewMentor();
     FrmUpdateStudent frmUpdateStudent = new FrmUpdateStudent();
     FrmAddMentors frmAddMentors = new FrmAddMentors();
+    FrmUpdateMentor frmUpdateMentor = new FrmUpdateMentor();
     
     Map<String, JInternalFrame>  forms = new HashMap<>();
     
@@ -53,10 +55,13 @@ public class FrmMain extends javax.swing.JFrame {
         forms.put("frmLogin", frmLogin);
         forms.put("frmAddStudent", frmAddStudent);
         forms.put("frmUpdateStudent", frmUpdateStudent);
+        Tables-JInternalFrame
         forms.put("frmAddMentors", frmAddMentors); 
         forms.put("frmViewStudent", frmViewStudent);
         forms.put("frmViewMentor", frmViewMentor);
        // forms.put("frmViewMentors", frmViewStudent);
+
+
         //Add add these to the JDesktopPage
         forms.values().forEach((frm)->{
             jdpMainContainer.add(frm);
@@ -101,7 +106,10 @@ public class FrmMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+
         jdpMainContainer = new javax.swing.JDesktopPane();
+
+      
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         fileLogin = new javax.swing.JMenuItem();
@@ -124,9 +132,12 @@ public class FrmMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+      
         jdpMainContainer.setBackground(new java.awt.Color(0, 0, 0));
         jdpMainContainer.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jdpMainContainer.setToolTipText("");
+
+
 
         javax.swing.GroupLayout jdpMainContainerLayout = new javax.swing.GroupLayout(jdpMainContainer);
         jdpMainContainer.setLayout(jdpMainContainerLayout);
@@ -139,7 +150,10 @@ public class FrmMain extends javax.swing.JFrame {
             .addGap(0, 917, Short.MAX_VALUE)
         );
 
+       
         getContentPane().add(jdpMainContainer, java.awt.BorderLayout.CENTER);
+
+
 
         menuFile.setText("File");
 
@@ -301,6 +315,7 @@ public class FrmMain extends javax.swing.JFrame {
 
     private void mngMentorUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngMentorUpdateActionPerformed
         // TODO add your handling code here:
+        showForm("frmUpdateMentor");
     }//GEN-LAST:event_mngMentorUpdateActionPerformed
 
     private void mngMentorDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngMentorDeleteActionPerformed
@@ -321,7 +336,10 @@ public class FrmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         showForm("frmViewStudent");
 
+       
     }//GEN-LAST:event_viewStudentsActionPerformed
+
+   
 
     private void viewMentorssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMentorssActionPerformed
         // TODO add your handling code here:

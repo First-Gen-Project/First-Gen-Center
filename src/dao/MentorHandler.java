@@ -29,7 +29,8 @@ public class MentorHandler {
         //String cmd = String.format(cmdTemplate, samID, Major, Minor, gpa, mtrID);
         String encryptedPass = password;
         encryptedPass = encrypter.encryptPassword(password);
-        try (PreparedStatement personStatement = sqlUtil.getConnection().prepareStatement(peeTemplate); PreparedStatement mentorStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate);) {
+        try (PreparedStatement personStatement = sqlUtil.getConnection().prepareStatement(peeTemplate); 
+             PreparedStatement mentorStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate);) {
             //parameters to insert into person table
             personStatement.setInt(1, samID);
             personStatement.setString(2, name);
@@ -53,28 +54,31 @@ public class MentorHandler {
         }
     }
     public int updatementor(int samID, String name, String email, String date_of_birth, String username, String password) {
-        String peeTemplate = "INSERT INTO person (samID, name, email, date_of_birth) VALUES (?,?,?,?)";
+        PasswordEncrypter encrypter  = new PasswordEncrypter();
+        String peeTemplate = "UPDATE person SET name=?, email =?, date_of_birth=? WHERE samID=?";
         //String pee = String.format(peeTemplate, samID, name, email, date_of_birth);
-        String cmdTemplate = "INSERT INTO mentor (samID , username, password) VALUES (?, ?, ?)";
+        String cmdTemplate = "UPDATE mentor SET username=?, password=? WHERE samID = ?";
         //String cmd = String.format(cmdTemplate, samID, Major, Minor, gpa, mtrID);
-        try (PreparedStatement personStatement = sqlUtil.getConnection().prepareStatement(peeTemplate); PreparedStatement mentorStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate);) {
-            //parameters to insert into person table
-            personStatement.setInt(1, samID);
-            personStatement.setString(2, name);
-            personStatement.setString(3, email);
-            personStatement.setString(4, date_of_birth);
+        String encryptedPassword = encrypter.encryptPassword(password);
+        try (PreparedStatement personStatement = sqlUtil.getConnection().prepareStatement(peeTemplate); 
+             PreparedStatement mentorStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate);) {
+            //parameters to update person table
+            
+            personStatement.setString(1, name);
+            personStatement.setString(2, email);
+            personStatement.setString(3, date_of_birth);
+            personStatement.setInt(4, samID);
+            //parameters to update mentor table
+             
+             mentorStatement.setString(1, username);
+             mentorStatement.setString(2, encryptedPassword);
+             mentorStatement.setInt(3,samID);
 
-            //parameters to insert into mentor table
-             mentorStatement.setInt(1, samID);
-             mentorStatement.setString(2, username);
-             mentorStatement.setString(3, password);
-
-            //insertion transaction
+            //update transaction
             sqlUtil.getConnection().setAutoCommit(false);
             personStatement.executeUpdate();
             mentorStatement.executeUpdate();
             sqlUtil.getConnection().commit();
-            sqlUtil.getConnection().setAutoCommit(true);
             return 1;//mark success
         } catch (SQLException ex) {
             Logger.getLogger(MentorHandler.class.getName()).log(Level.SEVERE, null, ex);
@@ -117,11 +121,6 @@ public class MentorHandler {
         return sqlUtil.executeUpdate(cmd);
     }
 
-    public int updatementor(String name, String Major, String Minor, double gpa, int mtrID, String date_of_birth) {
-        String cmdTemplate = "update mentor set name= ?, Major= ?, Minor= ? gpa= ?, mtrID= ?, date_of_birth= ?";
-        String stmStr = String.format(cmdTemplate, name, Major, Minor, gpa, mtrID);
-        return sqlUtil.executeUpdate(stmStr);
-    }
 
     public List<Mentor> getmentors(String keyword) {
         List<Mentor> mentors = new ArrayList<>();
@@ -170,13 +169,4 @@ public class MentorHandler {
     }
    
     
-    public boolean deleteMentor(int mtrId) {
-        String stm = String.format("DELETE FROM Mentor WHERE mtrId=%d", mtrId);
-        return sqlUtil.executeUpdate(stm) > 0;
-    }
-    public boolean updateMentor(int mtrId, String username, String password, String name, String dob) {
-        String encryptedPassword = PasswordEncrypter.encryptPassword(password);
-        String stm = String.format("UPDATE Mentor SET mtrUsername='%s', mtrPassword='%s', mtrName='%s' WHERE mtrId=%d", username, encryptedPassword, name, mtrId);
-        return sqlUtil.executeUpdate(stm) > 0;
-    }
 }
