@@ -87,6 +87,8 @@ CREATE TABLE IF NOT EXISTS application_info (
 
 insert into person values(000376298, 'Dougathy Gilbert', 'dgilbert@shsu.edu', '2004-04-27');
 insert into mentor values(000376298, 'dGilbert', 'PhamLover<3!');
+insert into person values(1, 'James', 'James@shsu.edu', '1968-04-27');
+insert into mentor values(1, 'mentor1', 'mentor1');
 insert into person values(000289736, 'Gary Dinglesnorpee', 'gqd123@shsu.edu', '2015-06-10');
 insert into student values(000289736, 'Theatre Arts', 'Criminal Justice', '2.01', '000376298');
 insert into person values(000434461, 'Marlin Tower II', 'mxt092@firstgen.com', '2001-12-09');
