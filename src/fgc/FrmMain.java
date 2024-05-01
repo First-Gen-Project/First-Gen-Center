@@ -55,7 +55,8 @@ public class FrmMain extends javax.swing.JFrame {
         forms.put("frmUpdateStudent", frmUpdateStudent);
         forms.put("frmAddMentors", frmAddMentors); 
         forms.put("frmViewStudent", frmViewStudent);
-        forms.put("frmViewMentor", frmViewStudent);
+        forms.put("frmViewMentor", frmViewMentor);
+       // forms.put("frmViewMentors", frmViewStudent);
         //Add add these to the JDesktopPage
         forms.values().forEach((frm)->{
             jdpMainContainer.add(frm);
@@ -119,6 +120,7 @@ public class FrmMain extends javax.swing.JFrame {
         viewTables = new javax.swing.JMenu();
         viewStudents = new javax.swing.JMenuItem();
         viewMentors = new javax.swing.JMenuItem();
+        viewMentorss = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -247,6 +249,14 @@ public class FrmMain extends javax.swing.JFrame {
         });
         viewTables.add(viewMentors);
 
+        viewMentorss.setText("Mentors?");
+        viewMentorss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewMentorssActionPerformed(evt);
+            }
+        });
+        viewTables.add(viewMentorss);
+
         menuView.add(viewTables);
 
         jMenuBar1.add(menuView);
@@ -303,15 +313,20 @@ public class FrmMain extends javax.swing.JFrame {
         
     private void viewMentorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMentorsActionPerformed
         // TODO add your handling code here:
-        showForm("frmViewMentor", false);
+        showForm("frmViewMentor");
 
     }//GEN-LAST:event_viewMentorsActionPerformed
 
     private void viewStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStudentsActionPerformed
         // TODO add your handling code here:
-        showForm("frmViewStudent", false);
+        showForm("frmViewStudent");
 
     }//GEN-LAST:event_viewStudentsActionPerformed
+
+    private void viewMentorssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMentorssActionPerformed
+        // TODO add your handling code here:
+       // showForm("frmViewMentors", false);
+    }//GEN-LAST:event_viewMentorssActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,6 +384,7 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mngStudentDelete;
     private javax.swing.JMenuItem mngStudentUpdate;
     private javax.swing.JMenuItem viewMentors;
+    private javax.swing.JMenuItem viewMentorss;
     private javax.swing.JMenuItem viewStudents;
     private javax.swing.JMenu viewTables;
     // End of variables declaration//GEN-END:variables
