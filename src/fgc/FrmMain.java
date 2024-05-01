@@ -36,6 +36,7 @@ public class FrmMain extends javax.swing.JFrame {
     FrmLogin frmLogin = new FrmLogin();
     FrmAddStudent frmAddStudent = new FrmAddStudent();
     FrmViewStudent frmViewStudent = new FrmViewStudent();
+    FrmViewMentor frmViewMentor = new FrmViewMentor();
     FrmUpdateStudent frmUpdateStudent = new FrmUpdateStudent();
     FrmAddMentors frmAddMentors = new FrmAddMentors();
     
@@ -51,12 +52,13 @@ public class FrmMain extends javax.swing.JFrame {
         initComponents();
         forms.put("frmLogin", frmLogin);
         forms.put("frmAddStudent", frmAddStudent);
-        forms.put("frmViewStudent", frmViewStudent);
         forms.put("frmUpdateStudent", frmUpdateStudent);
-        forms.put("frmAddMentors", frmAddMentors);
+        forms.put("frmAddMentors", frmAddMentors); 
+        forms.put("frmViewStudent", frmViewStudent);
+        forms.put("frmViewMentor", frmViewStudent);
         //Add add these to the JDesktopPage
         forms.values().forEach((frm)->{
-            jdpContainer.add(frm);
+            jdpMainContainer.add(frm);
         });    
     }
     private void showForm(String frmName){
@@ -67,13 +69,13 @@ public class FrmMain extends javax.swing.JFrame {
             showForm("frmLogin", false);
         }else{ 
              try {  
-            //Do Authoorization
+            //Do Authorization
             if(forms.get(frmName).isClosed()){
                 
                 try {
                     //Create new
                    forms.put(frmName, forms.get(frmName).getClass().newInstance());
-                   jdpContainer.add(forms.get(frmName));
+                   jdpMainContainer.add(forms.get(frmName));
                 } catch (InstantiationException ex) {
                     java.util.logging.Logger.getLogger(FrmMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
@@ -98,7 +100,7 @@ public class FrmMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jdpContainer = new javax.swing.JDesktopPane();
+        jdpMainContainer = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         fileLogin = new javax.swing.JMenuItem();
@@ -117,28 +119,25 @@ public class FrmMain extends javax.swing.JFrame {
         viewTables = new javax.swing.JMenu();
         viewStudents = new javax.swing.JMenuItem();
         viewMentors = new javax.swing.JMenuItem();
-        viewNotes = new javax.swing.JCheckBoxMenuItem();
-        viewEvents = new javax.swing.JCheckBoxMenuItem();
-        viewApplication = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jdpContainer.setBackground(new java.awt.Color(0, 0, 0));
-        jdpContainer.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jdpContainer.setToolTipText("");
+        jdpMainContainer.setBackground(new java.awt.Color(0, 0, 0));
+        jdpMainContainer.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jdpMainContainer.setToolTipText("");
 
-        javax.swing.GroupLayout jdpContainerLayout = new javax.swing.GroupLayout(jdpContainer);
-        jdpContainer.setLayout(jdpContainerLayout);
-        jdpContainerLayout.setHorizontalGroup(
-            jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2054, Short.MAX_VALUE)
+        javax.swing.GroupLayout jdpMainContainerLayout = new javax.swing.GroupLayout(jdpMainContainer);
+        jdpMainContainer.setLayout(jdpMainContainerLayout);
+        jdpMainContainerLayout.setHorizontalGroup(
+            jdpMainContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1799, Short.MAX_VALUE)
         );
-        jdpContainerLayout.setVerticalGroup(
-            jdpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1086, Short.MAX_VALUE)
+        jdpMainContainerLayout.setVerticalGroup(
+            jdpMainContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 917, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jdpContainer, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jdpMainContainer, java.awt.BorderLayout.CENTER);
 
         menuFile.setText("File");
 
@@ -248,18 +247,6 @@ public class FrmMain extends javax.swing.JFrame {
         });
         viewTables.add(viewMentors);
 
-        viewNotes.setSelected(true);
-        viewNotes.setText("Notes");
-        viewTables.add(viewNotes);
-
-        viewEvents.setSelected(true);
-        viewEvents.setText("Events");
-        viewTables.add(viewEvents);
-
-        viewApplication.setSelected(true);
-        viewApplication.setText("Application");
-        viewTables.add(viewApplication);
-
         menuView.add(viewTables);
 
         jMenuBar1.add(menuView);
@@ -316,13 +303,13 @@ public class FrmMain extends javax.swing.JFrame {
         
     private void viewMentorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMentorsActionPerformed
         // TODO add your handling code here:
-        showForm("frmViewMentors", true);
+        showForm("frmViewMentor", false);
 
     }//GEN-LAST:event_viewMentorsActionPerformed
 
     private void viewStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStudentsActionPerformed
         // TODO add your handling code here:
-        showForm("frmViewStudents");
+        showForm("frmViewStudent", false);
 
     }//GEN-LAST:event_viewStudentsActionPerformed
 
@@ -369,7 +356,7 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem fileLogin;
     private javax.swing.JMenuItem fileLogout;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JDesktopPane jdpContainer;
+    private javax.swing.JDesktopPane jdpMainContainer;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenu menuManage;
     private javax.swing.JMenu menuView;
@@ -381,10 +368,7 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem mngStudentAdd;
     private javax.swing.JMenuItem mngStudentDelete;
     private javax.swing.JMenuItem mngStudentUpdate;
-    private javax.swing.JCheckBoxMenuItem viewApplication;
-    private javax.swing.JCheckBoxMenuItem viewEvents;
     private javax.swing.JMenuItem viewMentors;
-    private javax.swing.JCheckBoxMenuItem viewNotes;
     private javax.swing.JMenuItem viewStudents;
     private javax.swing.JMenu viewTables;
     // End of variables declaration//GEN-END:variables

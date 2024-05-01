@@ -38,25 +38,29 @@ public class FrmViewMentor extends javax.swing.JInternalFrame {
      */
     
 
-    public FrmViewMentor() {
-        initComponents();
-        populateMentors();
-    }
-
-     public void populateMentors(){
+     private void populateData(){
        
-       String keywordmtr = txtKeywordmtr.getText();
-        List<Mentor> mentors = mentorHandler.loadMentors(keywordmtr);
+    }
+    
+    List<Mentor> mentors;
+    public FrmViewMentor() {
+        initComponents(); 
+        populateMentors();       
+    }
+     private MentorHandler MentorHandler = new MentorHandler();
+    public void populateMentors(){
+       
+        String keywordmtr = txtKeywordmtr.getText();
+        List<Mentor> mentors = MentorHandler.loadMentors(keywordmtr);
         String columns[] = new String[]{
-            "samID", "name", "email", "date_of_birth", "username", "password" 
+            "samID", "name", "email", "date_of_birth", "Username", "Password"
         };
         DefaultTableModel tblModel = new DefaultTableModel(columns,0) ;
         mentors.forEach((std)->{
             tblModel.addRow(std.getRow());
         });
         tblMentors.setModel(tblModel);
-    } 
-    
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,7 +71,7 @@ public class FrmViewMentor extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
+        jMentorContainer = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblMentors = new javax.swing.JTable();
         txtKeywordmtr = new javax.swing.JTextField();
@@ -77,7 +81,7 @@ public class FrmViewMentor extends javax.swing.JInternalFrame {
         txtStudents1 = new java.awt.Label();
         btnRefreshmtr = new javax.swing.JButton();
 
-        jPanel3.setBackground(new java.awt.Color(245, 100, 35));
+        jMentorContainer.setBackground(new java.awt.Color(245, 100, 35));
 
         tblMentors.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tblMentors.setModel(new javax.swing.table.DefaultTableModel(
@@ -140,55 +144,56 @@ public class FrmViewMentor extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jMentorContainerLayout = new javax.swing.GroupLayout(jMentorContainer);
+        jMentorContainer.setLayout(jMentorContainerLayout);
+        jMentorContainerLayout.setHorizontalGroup(
+            jMentorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMentorContainerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnRefreshmtr)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDeletemtr)
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(jMentorContainerLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jMentorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 903, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jMentorContainerLayout.createSequentialGroup()
                         .addComponent(txtKeywordmtr, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearchmtr)))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jMentorContainerLayout.setVerticalGroup(
+            jMentorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jMentorContainerLayout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jMentorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtKeywordmtr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchmtr))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jMentorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDeletemtr)
                     .addComponent(btnRefreshmtr))
-                .addContainerGap())
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jMentorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jMentorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -219,7 +224,7 @@ public class FrmViewMentor extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnDeletemtr;
     private javax.swing.JButton btnRefreshmtr;
     private javax.swing.JButton btnSearchmtr;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jMentorContainer;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable tblMentors;
