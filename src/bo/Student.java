@@ -10,18 +10,17 @@ public class Student{
     private String date_of_birth;
     private String Major;
     private String Minor;
-    private double GPA;
+    private double gpa;
     private int mtrID;
-    private String dob;
 
-    public Student(int samID, String name, String email, String date_of_birth, String Major, String Minor, double GPA, int mtrID) {
+    public Student(int samID, String name, String email, String date_of_birth, String Major, String Minor, double gpa, int mtrID) {
         this.samID = samID;
         this.name = name;
         this.email = email;
         this.date_of_birth = date_of_birth;
         this.Major = Major;
         this.Minor = Minor;
-        this.GPA = GPA;
+        this.gpa = gpa;
         this.mtrID = mtrID;
     }
     public Vector<Object> getRow(){
@@ -32,7 +31,7 @@ public class Student{
         ret.add(this.date_of_birth);
         ret.add(this.Major);
         ret.add(this.Minor);
-        ret.add(this.GPA);
+        ret.add(this.gpa);
         ret.add(this.mtrID);
         return ret;
     }
@@ -69,27 +68,27 @@ public class Student{
         this.email = date_of_birth;
     }
     
-    public String getsMajor() {
+    public String getMajor() {
         return Major;
     }
 
-    public void setsMajor(String Major) {
+    public void setMajor(String Major) {
         this.Major = Major;
     }
 
-    public void setsMinor(String Minor) {
+    public void setMinor(String Minor) {
         this.Minor = Minor;
     }
-    public String getsMinor() {
+    public String getMinor() {
         return Minor;
     }
 
-    public double getGPA() {
-        return GPA;
+    public double getgpa() {
+        return gpa;
     }
 
-    public void setGPA(int GPA) {
-        this.GPA = GPA;
+    public void setgpa(int gpa) {
+        this.gpa = gpa;
     }
 
     public int getMtrId() {

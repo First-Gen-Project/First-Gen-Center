@@ -15,7 +15,9 @@ CREATE TABLE IF NOT EXISTS mentor (
     samID INT PRIMARY KEY,
     username VARCHAR(255) UNIQUE,
     password VARCHAR(255),
-    FOREIGN KEY (samID) REFERENCES person(samID)
+
+    FOREIGN KEY (samID) REFERENCES person(samID) on DELETE CASCADE
+
 );
 
 -- Create the Student table
@@ -25,7 +27,8 @@ CREATE TABLE IF NOT EXISTS student (
     minor VARCHAR(255) DEFAULT NULL,
     gpa DECIMAL(3, 2),
     mtrId INT, 
-    FOREIGN KEY (samID) REFERENCES person(samID),
+    FOREIGN KEY (samID) REFERENCES person(samID) ON DELETE CASCADE,
+
     FOREIGN KEY (mtrID) REFERENCES mentor(samID)
 );
 
@@ -42,22 +45,26 @@ CREATE TABLE IF NOT EXISTS notes (
 
 -- Create the Event table
 CREATE TABLE IF NOT EXISTS event (
+
     eventID INT,
     e_name VARCHAR(255),
     samID INT,
     date DATE,
     PRIMARY KEY (eventID, e_name),
+
     FOREIGN KEY (samID) REFERENCES person(samID)
 );
 
 -- Create junction table student_event for event table
 CREATE TABLE IF NOT EXISTS student_event (
+
     samID INT PRIMARY KEY,
     student_attend VARCHAR(255),
     eventID INT,
     e_name VARCHAR(255),
     FOREIGN KEY (samID) REFERENCES student(samID),
     FOREIGN KEY (eventID, e_name) REFERENCES event(eventID, e_name)
+
 );
 
 -- Create the Application table
@@ -77,6 +84,7 @@ CREATE TABLE IF NOT EXISTS application_info (
 
 -- INSERT INTO student(samID, name, major, minor, gpa, mtrId) VALUES ('33994', 'tom', 'science', 'food', '3.55', '89239'); 
 -- Dummy Data Queries
+
 insert into person values(000376298, 'Dougathy Gilbert', 'dgilbert@shsu.edu', '2004-04-27');
 insert into mentor values(000376298, 'dGilbert', 'PhamLover<3!');
 insert into person values(000289736, 'Gary Dinglesnorpee', 'gqd123@shsu.edu', '2015-06-10');
@@ -92,12 +100,14 @@ insert into student values(000987546, 'Political Science', 'Rapping', '3.94', '0
 insert into event values(1, 'Party Rokkers', 000376298, '2005-01-01');
 insert into student_event values(000289736, 'Yes', 1, 'Party Rokkers');
 
+
 update mentor set password = 'dzZpLdLX5wJ3ZQVlVNgEMIAgohibt2k444Gqt6PuUlQ='
 where samID = 1;
 
 
+select * from person;
 select * from mentor;
 select * from student;
-select * from person;
 select * from event;
 select * from student_event;
+

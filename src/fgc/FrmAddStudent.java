@@ -14,7 +14,7 @@ import fgc.FrmMain;
  */
  
 public class FrmAddStudent extends javax.swing.JInternalFrame {
- 
+    StudentHandler studentHandler = new StudentHandler();
     private void populateData(){
        
     }
@@ -45,7 +45,7 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
         txtSamID = new javax.swing.JTextField();
         txtMajor = new javax.swing.JTextField();
         txtMinor = new javax.swing.JTextField();
-        txtGPA = new javax.swing.JTextField();
+        txtgpa = new javax.swing.JTextField();
         txtMtrID = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtDate_of_birth = new javax.swing.JTextField();
@@ -150,7 +150,7 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
                                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtGPA)
+                                                .addComponent(txtgpa)
                                                 .addComponent(txtMinor)))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel3)
@@ -184,7 +184,7 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtGPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtgpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -207,7 +207,7 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    StudentHandler studentHandler = new StudentHandler();
+   
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // Get input values:
@@ -216,10 +216,10 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
         String email =txtEmail.getText();
         String Major = txtMajor.getText();
         String Minor = txtMinor.getText();
-        double GPA = Double.parseDouble(txtGPA.getText());
+        double gpa = Double.parseDouble(txtgpa.getText());
         int mtrID = Integer.parseInt(txtMtrID.getText());
         String date_of_birth = txtDate_of_birth.getText();
-        int ret = studentHandler.addStudent(samID, name, email, date_of_birth, Major, Minor, GPA, mtrID);
+        int ret = studentHandler.addStudent(samID, name, email, date_of_birth, Major, Minor, gpa, mtrID);
         if(ret == 0){
             JOptionPane.showMessageDialog(this, "Failed", "Failed", JOptionPane.ERROR_MESSAGE);
         }else{
@@ -260,11 +260,11 @@ public class FrmAddStudent extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txtDate_of_birth;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtGPA;
     private javax.swing.JTextField txtMajor;
     private javax.swing.JTextField txtMinor;
     private javax.swing.JTextField txtMtrID;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtSamID;
+    private javax.swing.JTextField txtgpa;
     // End of variables declaration//GEN-END:variables
 }

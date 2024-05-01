@@ -18,11 +18,11 @@ public class StudentHandler {
     public StudentHandler() {
         sqlUtil = new SQLUtil();
     }
-
+ 
     public int addStudent(int samID, String name, String email, String date_of_birth, String Major, String Minor, double gpa, int mtrID) {
         String peeTemplate = "INSERT INTO person (samID, name, email, date_of_birth) VALUES (?,?,?,?)";
         //String pee = String.format(peeTemplate, samID, name, email, date_of_birth);
-        String cmdTemplate = "INSERT INTO Student (samID , Major, Minor, GPA, mtrID) VALUES (?, ?, ?, ?, ?)";
+        String cmdTemplate = "INSERT INTO Student (samID , Major, Minor, gpa, mtrID) VALUES (?, ?, ?, ?, ?)";
         //String cmd = String.format(cmdTemplate, samID, Major, Minor, gpa, mtrID);
         try (PreparedStatement personStatement = sqlUtil.getConnection().prepareStatement(peeTemplate); PreparedStatement studentStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate);) {
             //parameters to insert into person table
@@ -50,44 +50,43 @@ public class StudentHandler {
             return 0;//mark failure 
         }
     }
-    public int updateStudent(int samID, String name, String email, String date_of_birth, String Major, String Minor, double gpa, int mtrID) {
-        String peeTemplate = "INSERT INTO person (samID, name, email, date_of_birth) VALUES (?,?,?,?)";
-        //String pee = String.format(peeTemplate, samID, name, email, date_of_birth);
-        String cmdTemplate = "INSERT INTO Student (samID , Major, Minor, GPA, mtrID) VALUES (?, ?, ?, ?, ?)";
-        //String cmd = String.format(cmdTemplate, samID, Major, Minor, gpa, mtrID);
-        try (PreparedStatement personStatement = sqlUtil.getConnection().prepareStatement(peeTemplate); PreparedStatement studentStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate);) {
-            //parameters to insert into person table
-            personStatement.setInt(1, samID);
-            personStatement.setString(2, name);
-            personStatement.setString(3, email);
-            personStatement.setString(4, date_of_birth);
+  public int updateStudent(int samID, String name, String email, String date_of_birth, String Major, String Minor, double gpa, int mtrID) {
+    String peeTemplate = "UPDATE person SET name=?, email=?, date_of_birth=? WHERE samID=?";
+    String cmdTemplate = "UPDATE student SET Major=?, Minor=?, GPA=?, mtrID=? WHERE samID=?";
+    try (PreparedStatement personStatement = sqlUtil.getConnection().prepareStatement(peeTemplate);
+         PreparedStatement studentStatement = sqlUtil.getConnection().prepareStatement(cmdTemplate)) {
+        // Parameters to update person table
+        personStatement.setString(1, name);
+        personStatement.setString(2, email);
+        personStatement.setString(3, date_of_birth);
+        personStatement.setInt(4, samID);
 
-            //parameters to insert into Student table
-            studentStatement.setInt(1, samID);
-            studentStatement.setString(2, Major);
-            studentStatement.setString(3, Minor);
-            studentStatement.setDouble(4, gpa);
-            studentStatement.setInt(5, mtrID);
+        // Parameters to update student table
+        studentStatement.setString(1, Major);
+        studentStatement.setString(2, Minor);
+        studentStatement.setDouble(3, gpa);
+        studentStatement.setInt(4, mtrID);
+        studentStatement.setInt(5, samID);
 
-            //insertion transaction
-            sqlUtil.getConnection().setAutoCommit(false);
-            personStatement.executeUpdate();
-            studentStatement.executeUpdate();
-            sqlUtil.getConnection().commit();
-            sqlUtil.getConnection().setAutoCommit(true);
-            return 1;//mark success
-        } catch (SQLException ex) {
-            Logger.getLogger(StudentHandler.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;//mark failure 
-        }
+        // Insertion transaction
+        sqlUtil.getConnection().setAutoCommit(false);
+        personStatement.executeUpdate();
+        studentStatement.executeUpdate();
+        sqlUtil.getConnection().commit();
+        return 1; // Mark success
+    } catch (SQLException ex) {
+        Logger.getLogger(StudentHandler.class.getName()).log(Level.SEVERE, null, ex);
+        return 0; // Mark failure
     }
+}
 
     public List<Student> loadStudents(String keyword) {
 
         List<Student> students = new ArrayList<>();
-        String cmdTemplate = "SELECT person.samID, person.name, person.email, person.date_of_birth, student.Major, student.Minor, student.GPA, student.mtrID "
+        String cmdTemplate = "SELECT person.samID, person.name, person.email, person.date_of_birth, student.Major, student.Minor, student.gpa, student.mtrID "
                 + "FROM person "
-                + "INNER JOIN student ON person.samID = student.samID";
+                + "INNER JOIN student ON person.samID = student.samID "
+                + " WHERE person.name like '%s'";
 
         String cmd = String.format(cmdTemplate, "%" + keyword + "%");
         ResultSet rs = sqlUtil.executeQuery(cmd);
@@ -112,20 +111,15 @@ public class StudentHandler {
     }
 
     public int deleteStudent(int samID) {
-        String cmdTemplate ="Delete from student where samID = %s" ;
+      
+        String cmdTemplate ="DELETE from person where samID=%s" ;
         String cmd = String.format(cmdTemplate, samID);
         return sqlUtil.executeUpdate(cmd);
     }
 
-    public int updateStudent(String name, String Major, String Minor, double gpa, int mtrID, String date_of_birth) {
-        String cmdTemplate = "update Student set name= ?, Major= ?, Minor= ? GPA= ?, mtrID= ?, date_of_birth= ?";
-        String stmStr = String.format(cmdTemplate, name, Major, Minor, gpa, mtrID);
-        return sqlUtil.executeUpdate(stmStr);
-    }
-
     public List<Student> getStudents(String keyword) {
         List<Student> students = new ArrayList<>();
-        String cmdTemplate = "SELECT s.samID, p.name, p.email, p.date_of_birth, s.Major, s.Minor, s.GPA, s.mtrID"
+        String cmdTemplate = "SELECT s.samID, p.name, p.email, p.date_of_birth, s.Major, s.Minor, s.gpa, s.mtrID"
                 + "FROM Student s "
                 + "INNER JOIN person p on s.samID = p.samID";
 
@@ -136,7 +130,7 @@ public class StudentHandler {
             String date_of_birth = rs.getString("date_of_birth");
             String Major = rs.getString("Major");
             String Minor = rs.getString("Minor");
-            double gpa = rs.getDouble("GPA");
+            double gpa = rs.getDouble("gpa");
             int mtrID = rs.getInt("mtrID");
 
             Student student = new Student(samID, name, email, date_of_birth, Major, Minor, gpa, mtrID);
