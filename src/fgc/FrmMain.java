@@ -116,11 +116,9 @@ public class FrmMain extends javax.swing.JFrame {
         mngStudent = new javax.swing.JMenu();
         mngStudentAdd = new javax.swing.JMenuItem();
         mngStudentUpdate = new javax.swing.JMenuItem();
-        mngStudentDelete = new javax.swing.JMenuItem();
         mngMentor = new javax.swing.JMenu();
         mngMentorAdd = new javax.swing.JMenuItem();
         mngMentorUpdate = new javax.swing.JMenuItem();
-        mngMentorDelete = new javax.swing.JMenuItem();
         menuView = new javax.swing.JMenu();
         viewTables = new javax.swing.JMenu();
         viewStudents = new javax.swing.JMenuItem();
@@ -193,14 +191,6 @@ public class FrmMain extends javax.swing.JFrame {
         });
         mngStudent.add(mngStudentUpdate);
 
-        mngStudentDelete.setText("Delete");
-        mngStudentDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mngStudentDeleteActionPerformed(evt);
-            }
-        });
-        mngStudent.add(mngStudentDelete);
-
         menuManage.add(mngStudent);
 
         mngMentor.setText("Mentor");
@@ -220,14 +210,6 @@ public class FrmMain extends javax.swing.JFrame {
             }
         });
         mngMentor.add(mngMentorUpdate);
-
-        mngMentorDelete.setText("Delete");
-        mngMentorDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mngMentorDeleteActionPerformed(evt);
-            }
-        });
-        mngMentor.add(mngMentorDelete);
 
         menuManage.add(mngMentor);
 
@@ -287,10 +269,6 @@ public class FrmMain extends javax.swing.JFrame {
         showForm("frmUpdateStudent");
     }//GEN-LAST:event_mngStudentUpdateActionPerformed
 
-    private void mngStudentDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngStudentDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mngStudentDeleteActionPerformed
-
     private void mngMentorAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngMentorAddActionPerformed
         showForm("frmAddMentors");
     }//GEN-LAST:event_mngMentorAddActionPerformed
@@ -299,10 +277,6 @@ public class FrmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         showForm("frmUpdateMentor");
     }//GEN-LAST:event_mngMentorUpdateActionPerformed
-
-    private void mngMentorDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngMentorDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mngMentorDeleteActionPerformed
 
     private void fileLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileLoginActionPerformed
         showForm("frmLogin", false);
@@ -374,11 +348,9 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenu menuView;
     private javax.swing.JMenu mngMentor;
     private javax.swing.JMenuItem mngMentorAdd;
-    private javax.swing.JMenuItem mngMentorDelete;
     private javax.swing.JMenuItem mngMentorUpdate;
     private javax.swing.JMenu mngStudent;
     private javax.swing.JMenuItem mngStudentAdd;
-    private javax.swing.JMenuItem mngStudentDelete;
     private javax.swing.JMenuItem mngStudentUpdate;
     private javax.swing.JMenuItem viewMentors;
     private javax.swing.JMenuItem viewStudents;
